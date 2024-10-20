@@ -1,16 +1,14 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Home</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block content %}
     {% if user.is_authenticated %}
+    <div class="user-auth" style="margin: 20px;"">
         <h2>Hi, {{ user.get_full_name }}</h2>
         <p>Email: {{ user.email }}</p>
         <p><a href="{% url 'logout' %}">Logout</a></p>
+    </div>
     {% else %}
         <h2>You are not logged in</h2>
         <p><a href="{% url 'login' %}">Login</a></p>
     {% endif %}
-</body>
-</html>
+{% endblock %}
