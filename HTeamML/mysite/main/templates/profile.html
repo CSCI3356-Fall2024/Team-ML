@@ -9,78 +9,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Profile Page</title>
-    <style>
-        .hidden {
-            display: none;
-        }
-        .visible {
-            display: block;
-        }
-    </style>
 </head>
 
 
 <body>
-    <h1>User Profile</h1>
 
-   
     <div id="profile-view" class="visible">
         <img class=avatar src="{% static 'images/Default_Avatar.png' %}" alt="Avatar">
         <p><strong>Full Name:</strong> {{ user.fullname }}</p>
         <p><strong>School:</strong> {{ user.school }}</p>
         <p><strong>Email:</strong> {{ user.email }}</p>
         <p><strong>Major:</strong> {{ user.major }}</p>
-        <p><strong>Minor:</strong> {{ user.minor }}</p>
+        <p><strong>Major:</strong> {{ user.minor }}</p>
         <p><strong>Graduation Year:</strong> {{ user.gradyear }}</p>
         <p><strong>Profile Completed:</strong> {{ user.profile_completed|yesno:"Yes,No" }}</p>
-        <button onclick="toggleEdit()">Edit</button>
+        <p><strong>Is Supervisor:</strong> {{ user.supervisor|yesno:"Yes,No" }}</p>
         <img class=avatar src="{% static 'images/QR.png' %}" alt="QR">
     </div>
 
-    <!-- Editable Form -->
-    <div id="profile-edit" class="hidden">
-        <form id="edit-form">
-            <label for="fullname">Full Name:</label>
-            <input type="text" id="fullname" name="fullname" value="{{ user.fullname }}"><br><br>
-            
-            <label for="school">School:</label>
-            <input type="text" id="school" name="school" value="{{ user.school }}"><br><br>
-            
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" value="{{ user.email }}"><br><br>
-            
-            <label for="major">Major:</label>
-            <input type="text" id="major" name="major" value="{{ user.major }}"><br><br>
-            
-            <label for="gradyear">Graduation Year:</label>
-            <input type="number" id="gradyear" name="gradyear" value="{{ user.gradyear }}"><br><br>
-            
-            <label for="profile_completed">Profile Completed:</label>
-            <input type="checkbox" id="profile_completed" name="profile_completed" {% if user.profile_completed %}checked{% endif %}><br><br>
-            
-            <button type="button" onclick="toggleEdit()">Cancel</button>
-            <button type="submit">Save</button>
-        </form>
-    </div>
-
-    <script>
-        function toggleEdit() {
-            var profileView = document.getElementById('profile-view');
-            var profileEdit = document.getElementById('profile-edit');
-
-            if (profileView.classList.contains('visible')) {
-                profileView.classList.remove('visible');
-                profileView.classList.add('hidden');
-                profileEdit.classList.remove('hidden');
-                profileEdit.classList.add('visible');
-            } else {
-                profileEdit.classList.remove('visible');
-                profileEdit.classList.add('hidden');
-                profileView.classList.remove('hidden');
-                profileView.classList.add('visible');
-            }
-        }
-    </script>
 </body>
 
 {% endblock %}
