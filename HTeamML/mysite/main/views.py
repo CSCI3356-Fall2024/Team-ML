@@ -26,7 +26,11 @@ def rewards_view(request):
   return render(request, 'rewards.html')
 
 def profile_view(request):
-  return render(request, 'profile.html')
+  user = get_object_or_404(User, email=request.user.email)
+  context = {
+        'user': user
+  }
+  return render(request, 'profile.html', context)
 
 def profile_create_view(request):
   email = request.user.email

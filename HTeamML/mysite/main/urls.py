@@ -12,5 +12,5 @@ urlpatterns = [
   path('rewards/', views.rewards_view, name='rewards'),
   path('profile/', views.profile_view, name='profile'),
   path('create/', views.profile_create_view, name='create'),
-  path('post_google_login/', views.post_google_login_view, name='check'),
+  path('post_google_login/', views.post_google_login_view, name='post_google_login'),
 ]
