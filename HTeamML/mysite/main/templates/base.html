@@ -25,10 +25,11 @@
             justify-content: space-between;
             align-items: center;
         }
-        .nav-title {
+        .nav-title a {
             margin: 0;
             margin-left: 20px;
             color: #81FFA5; 
+            text-decoration: none;
         }
         .nav-links {
             display: flex;
@@ -54,13 +55,15 @@
         }
     </style>
     <title>{% block title %}GreenUp!{% endblock %}</title>
+
+    {% load static %}
 </head>
 
 <body>
     <nav>
         <div class="nav-container">
             <div class="nav-title">
-                <em><h1>GreenUp!</h1></em>
+                <em><h1><a href="{% url 'home' %}">GreenUp!</a></h1></em>
             </div>
 
             <div class="nav-links">

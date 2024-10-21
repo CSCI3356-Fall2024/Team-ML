@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "social_django",
     "main",
+    
 ]
 
 MIDDLEWARE = [
@@ -148,3 +149,6 @@ LOGOUT_URL = "logout"
 LOGIN_REDIRECT_URL = "home"
 
 
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+]
