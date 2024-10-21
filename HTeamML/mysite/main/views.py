@@ -34,5 +34,3 @@ def profile_view(request):
         'bio': 'Software developer with a passion for open-source projects.',
     }
     return render(request, 'profile.html', {'user': user_data})
-  
-
