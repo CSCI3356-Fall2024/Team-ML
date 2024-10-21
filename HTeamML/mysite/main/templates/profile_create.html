@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %} Profile Create {% endblock %}
+{% load static %}
+
+{% block content %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Create Page</title>
+    
+</head>
+
+
+<body>
+    <form method="POST">
+        {% csrf_token %} 
+        {{ form.as_p }}
+        <input type='submit' value='Save' />
+    </form>
+</body>
+
+{% endblock %}
