@@ -40,7 +40,7 @@ def profile_create_view(request):
       profile.email = email
       profile.profile_completed = True
       profile.save()  
-      return redirect('home') 
+      return redirect('profile') 
   else:
     form = UserProfileForm(initial={'email': email})
 
