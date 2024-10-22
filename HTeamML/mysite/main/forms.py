@@ -12,6 +12,14 @@ class UserProfileForm(forms.ModelForm):
             'minor', 
             'gradyear'
         ]
+        labels = {
+            'email': 'Email Address',
+            'fullname': 'Full Name',
+            'school': 'School',
+            'major': 'Major',
+            'minor': 'Minor',
+            'gradyear': 'Graduation Year'
+        }
         
     def __init__(self, *args, **kwargs):
         super(UserProfileForm, self).__init__(*args, **kwargs)
