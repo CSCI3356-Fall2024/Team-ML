@@ -50,16 +50,11 @@ def profile_create_view(request):
     return render(request, "profile_create.html", context)
   
 
-def post_google_login_view(request):
-    # Get the email from the authenticated Google user
+def check(request):
     google_email = request.user.email
-    
-    # Check if a user with the same email already exists in the database
+  
     if User.objects.filter(email=google_email).exists():
-        # Email exists, handle accordingly
         existing_user = User.objects.get(email=google_email)
-        # Redirect or handle the existing user
-        return redirect('home_view')  # Redirect to some page
+        return redirect('profile')  
     else:
-        # Email doesn't exist, so create a new profile or show a form
-        return redirect('profile_create_view')  # Redirect to profile creation
+        return redirect('profile_create')  
