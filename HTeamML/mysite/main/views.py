@@ -57,4 +57,4 @@ def check(request):
         existing_user = User.objects.get(email=google_email)
         return redirect('profile')  
     else:
-        return redirect('profile_create')  
+        return redirect('create')  
