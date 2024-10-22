@@ -8,7 +8,7 @@ class User(models.Model):
     school = models.CharField(max_length=255, blank=False, null=False)
     email = models.EmailField(max_length=254, blank=False, null=False)
     major = models.CharField(max_length=255, blank=False, null=False)
-    minor = models.CharField(max_length=255, default="None")
+    minor = models.CharField(max_length=255, blank=True)
     gradyear = models.PositiveIntegerField(choices = gradYearOptions, blank=False, null=False)
     profile_completed = models.BooleanField(default=False)
     supervisor = models.BooleanField(default=False)
