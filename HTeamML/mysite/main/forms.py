@@ -13,12 +13,12 @@ class UserProfileForm(forms.ModelForm):
             'gradyear'
         ]
         labels = {
-            'email': 'Email Address',
-            'fullname': 'Full Name',
-            'school': 'School',
-            'major': 'Major',
+            'email': 'Email Address (required)',
+            'fullname': 'Full Name (required)',
+            'school': 'School (required)',
+            'major': 'Major (required)',
             'minor': 'Minor',
-            'gradyear': 'Graduation Year'
+            'gradyear': 'Graduation Year (required)'
         }
         
     def __init__(self, *args, **kwargs):
