@@ -12,20 +12,45 @@
     <link rel="stylesheet" type="text/css" href="{% static 'styles/profile.css' %}">
 </head>
 
-
 <body>
 
-    <div id="profile-view" class="visible">
-        <img class=avatar src="{% static 'images/Default_Avatar.png' %}" alt="Avatar">
-        <p><strong>Full Name:</strong> {{ user.fullname }}</p>
-        <p><strong>School:</strong> {{ user.school }}</p>
-        <p><strong>Email:</strong> {{ user.email }}</p>
-        <p><strong>Major:</strong> {{ user.major }}</p>
-        <p><strong>Major:</strong> {{ user.minor }}</p>
-        <p><strong>Graduation Year:</strong> {{ user.gradyear }}</p>
-        <p><strong>Profile Completed:</strong> {{ user.profile_completed|yesno:"Yes,No" }}</p>
-        <p><strong>Is Supervisor:</strong> {{ user.supervisor|yesno:"Yes,No" }}</p>
-        <img class=avatar src="{% static 'images/QR.png' %}" alt="QR">
+    <div class="container">
+        <!-- Left Section - Avatar, Name, Email, and Profile Fields -->
+        <div class="profile-content">
+            <div class="profile-header">
+                <img class="avatar" src="{% static 'images/Default_Avatar.png' %}" alt="Avatar">
+                <div class="user-details">
+                    <h2>{{ user.fullname }}</h2>
+                    <p>{{ user.email }}</p>
+                </div>
+            </div>
+
+            <div class="profile-fields">
+                <label>Full Name:</label>
+                <p>{{ user.fullname }}</p>
+
+                <label>School:</label>
+                <p>{{ user.school }}</p>
+
+                <label>Major(s):</label>
+                <p>{{ user.major }}</p>
+
+                <label>Minor(s):</label>
+                <p>{{ user.minor }}</p>
+
+                <label>Graduation Year:</label>
+                <p>{{ user.gradyear }}</p>
+
+                <label>Is Supervisor:</label>
+                <p>{{ user.supervisor|yesno:"Yes,No" }}</p>
+            </div>
+        </div>
+
+        <!-- Right Section - QR Code and Edit Button -->
+        <div class="qr-code-section">
+            <button class="edit-button">Edit</button>
+            <img src="{% static 'images/QR.png' %}" alt="QR Code" class="qr-code">
+        </div>
     </div>
 
 </body>
