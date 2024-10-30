@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block title %}Landing Page{% endblock %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'styles/landing.css' %}">
+
+<div class="landing-container">
+    <div class="leaderboard-section">
+        <h2>LEADERBOARD</h2>
+        <div class="leaderboard-item">
+            <img src="{% static 'images/Default_Avatar.png' %}">
+            <div class="leaderboard-details">
+                <p><strong>Student Name</strong></p>
+                <p>School</p>
+            </div>
+
+            <p class="points">100 pts</p>
+        </div>
+
+        <div class="leaderboard-item">
+            <img src="{% static 'images/Default_Avatar.png' %}">
+            <div class="leaderboard-details">
+                <p><strong>Student Name</strong></p>
+                <p>Boston College</p>
+            </div>
+            <p class="points">95 pts</p>
+        </div>
+
+        <div class="leaderboard-item">
+            <img src="{% static 'images/Default_Avatar.png' %}">
+            <div class="leaderboard-details">
+                <p><strong>Student Name</strong></p>
+                <p>Boston College</p>
+            </div>
+            <p class="points">90 pts</p>
+        </div>
+        
+        <div class="leaderboard-item">
+            <img src="{% static 'images/Default_Avatar.png' %}">
+            <div class="leaderboard-details">
+                <p><strong>Student Name</strong></p>
+                <p>Boston College</p>
+            </div>
+            <p class="points">85 pts</p>
+        </div>
+    </div>
+
+    <div class="news-feed-section">
+        <h2>NEWS FEED</h2>
+        <h3>SUSTAINABILITY NEWS HEADLINE</h3>
+        <img src="{% static 'images/news_image.jpg' %}" alt="News Image" class="news-image">
+        <p>Sustainability News Details</p>
+    </div>
+
+    <div class="promotions-section">
+        <h3>PROMOTION 1</h3>
+        <p>Promotion Details</p>
+        <div class="status-bar"></div>
+        
+        <h3>PROMOTION 2</h3>
+        <p>Promotion Details</p>
+        <div class="status-bar"></div>
+        
+        <h3>EVENT 1</h3>
+        <p>Event Details</p>
+        <div class="status-bar"></div>
+    </div>
+</div>
+{% endblock %}
