@@ -10,17 +10,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Profile Page</title>
     <link rel="stylesheet" type="text/css" href="{% static 'styles/profile.css' %}">
+    <style>
+        .logout-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #00FF49; 
+            color: black; 
+            text-decoration: none; 
+            border: none; 
+            border-radius: 10px; 
+            font-size: 16px;
+        }
+    </style>
 </head>
 
 <body>
 
-
     <div class="container">
-        
-        <div class="logout-section">
-            <a href="{% url 'logout' %}">Logout</a>
-        </div>
-      
+    
         <!-- Left Section - Avatar, Name, Email, and Profile Fields -->
         <div class="profile-content">
             <div class="profile-header">
@@ -54,9 +61,15 @@
 
         <!-- Right Section - QR Code and Edit Button -->
         <div class="qr-code-section">
+            <div class="logout-section">
+                <a href="{% url 'logout' %}" class="logout-button">Logout</a>
+            </div>
             <button class="edit-button">Edit</button>
             <img src="{% static 'images/QR.png' %}" alt="QR Code" class="qr-code">
+            
         </div>
+
+        
     </div>
 
 </body>
