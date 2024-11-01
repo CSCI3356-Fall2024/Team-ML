@@ -10,6 +10,8 @@ class User(models.Model):
     major = models.CharField(max_length=255, blank=False, null=False)
     minor = models.CharField(max_length=255, blank=True)
     gradyear = models.PositiveIntegerField(choices = gradYearOptions, blank=False, null=False)
+    curent_points = models.PositiveIntegerField(default=0, null=False)
+    total_points = models.PositiveIntegerField(default=0, null=False)
     profile_completed = models.BooleanField(default=False)
     supervisor = models.BooleanField(default=False)
     
@@ -18,12 +20,12 @@ class User(models.Model):
         return self.email
     
 class Campaign(models.Model):
-    name = models.CharField(max_length= 255)
-    startdate = models.DateField()
-    enddate = models.DateField()
-    pointsreward = models.IntegerField()
-    description = models.TextField()
-    validationmethod = models.CharField(max_length= 255)
+    name = models.CharField(max_length= 255, blank=False, null=False)
+    startdate = models.DateField(blank=False, null=False)
+    enddate = models.DateField(blank=False, null=False)
+    pointsreward = models.PositiveIntegerField(default=0, blank=False, null=False)
+    description = models.TextField(blank=False, null=False)
+    validationmethod = models.CharField(max_length= 255, blank=False)
 
     def __str__(self):
         return self.name

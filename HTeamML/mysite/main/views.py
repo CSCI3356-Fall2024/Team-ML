@@ -25,8 +25,7 @@ def rewards_view(request):
 def landing_view(request):
    return render(request, 'landing.html')
 
-def campaign_view(request):
-   return render(request, 'campaign.html')
+ 
 
 def profile_view(request):
   user = get_object_or_404(User, email=request.user.email)
@@ -63,13 +62,24 @@ def check(request):
         existing_user = User.objects.get(email=google_email)
         return redirect('profile')  
     else:
-        return redirect('create')  
+        return redirect('profile_create')  
     
 
+
+
+
+def campaign_list_view(request):
+   return render(request, 'campaign_list.html')
+
+
+
 def create_campaign(request):
-    form = CampaignForm()
     if request.method == 'POST':
         form = CampaignForm(request.POST)
         if form.is_valid():
-            form.save()    
-    return render(request, 'campaign.html', {'form': form})
+            form.save()
+            return redirect('home') 
+    else:
+        form = CampaignForm()
+
+    return render(request, 'campaign_create.html', {'form': form})

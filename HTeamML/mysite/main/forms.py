@@ -44,7 +44,11 @@ class CampaignForm(forms.ModelForm):
             'description': 'Campaign Description',
             'validationmethod': 'Validation Method'
         }
-
+        
+        widgets = {
+            'startdate': forms.DateInput(attrs={'type': 'date'}),
+            'enddate': forms.DateInput(attrs={'type': 'date'}),
+        }
         def __init__(self, *args, **kwargs):
             super(CampaignForm, self).__init__(*args, **kwargs)
             
