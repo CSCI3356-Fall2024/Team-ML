@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 class User(models.Model):
     gradYearOptions = [(2025, "2025"), (2026, "2026"), (2027, "2027"), (2028, "2028"),]
@@ -20,6 +21,7 @@ class User(models.Model):
         return self.email
     
 class Campaign(models.Model):
+    id = models.AutoField(primary_key=True)
     name = models.CharField(max_length= 255, blank=False, null=False)
     startdate = models.DateField(blank=False, null=False)
     enddate = models.DateField(blank=False, null=False)
@@ -27,5 +29,9 @@ class Campaign(models.Model):
     description = models.TextField(blank=False, null=False)
     validationmethod = models.CharField(max_length= 255, blank=False)
 
+    @property
+    def expired(self):
+        return timezone.now().date() > self.enddate
+    
     def __str__(self):
         return self.name

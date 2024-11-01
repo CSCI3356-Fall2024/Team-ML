@@ -1,5 +1,7 @@
 from django import forms
 from .models import User, Campaign
+from django.core.exceptions import ValidationError
+from django.utils import timezone
 
 class UserProfileForm(forms.ModelForm):
     class Meta:
@@ -49,6 +51,20 @@ class CampaignForm(forms.ModelForm):
             'startdate': forms.DateInput(attrs={'type': 'date'}),
             'enddate': forms.DateInput(attrs={'type': 'date'}),
         }
+        
+        
         def __init__(self, *args, **kwargs):
             super(CampaignForm, self).__init__(*args, **kwargs)
             
+    def clean(self):
+        cleaned_data = super().clean()
+        startdate = cleaned_data.get('startdate')
+        enddate = cleaned_data.get('enddate')
+
+        if enddate and startdate and enddate <= startdate:
+            raise ValidationError("Error: End date must be after the start date.")
+
+        if enddate and enddate <= timezone.now().date():
+            raise ValidationError("Error: End date must be in the future.")
+
+        return cleaned_data

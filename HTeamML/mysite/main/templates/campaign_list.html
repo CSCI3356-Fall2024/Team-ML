@@ -1,20 +1,69 @@
 {% extends 'base.html' %}
 
-{% block title %}Landing Page{% endblock %}
+{% block title %}Campaign List{% endblock %}
 {% load static %}
 
-
-
 {% block content %}
-<head>
 
+<head>
+    <title>Campaign List</title>
 </head>
 
 <body>
 
-    <a href="{% url 'campaign_create' %}">Create a New Campaign</a></li></em>
+    <h1>Campaign List</h1>
+
+    <!-- Link to Create a New Campaign (Visible only to supervisors) -->
+    {% if user and user.supervisor %}
+        <a href="{% url 'campaign_create' %}">Create a New Campaign</a>
+    {% endif %}
+
+    <!-- Active Campaigns Section -->
+    <h2>Active Campaigns</h2>
+    {% if active_campaigns %}
+        <ul>
+            {% for campaign in active_campaigns %}
+                <li>
+                    {% if user and user.supervisor %}
+                        <strong>Campaign ID: {{ campaign.id }}</strong><br>
+                    {% endif %}
+                    <strong>{{ campaign.name }}</strong><br>
+                    Start Date: {{ campaign.startdate }}<br>
+                    End Date: {{ campaign.enddate }}<br>
+                    Points Reward: {{ campaign.pointsreward }}<br>
+                    Description: {{ campaign.description }}<br>
+                    Validation Method: {{ campaign.validationmethod }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No active campaigns.</p>
+    {% endif %}
+
+    <!-- Expired Campaigns Section (Visible only to supervisors) -->
+    {% if user and user.supervisor %}
+        <h2>Expired Campaigns</h2>
+        {% if expired_campaigns %}
+            <ul>
+                {% for campaign in expired_campaigns %}
+                    <li>
+                        {% if user and user.supervisor %}
+                            <strong>Campaign ID: {{ campaign.id }}</strong><br>
+                        {% endif %}
+                        <strong>{{ campaign.name }}</strong><br>
+                        Start Date: {{ campaign.startdate }}<br>
+                        End Date: {{ campaign.enddate }}<br>
+                        Points Reward: {{ campaign.pointsreward }}<br>
+                        Description: {{ campaign.description }}<br>
+                        Validation Method: {{ campaign.validationmethod }}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No expired campaigns.</p>
+        {% endif %}
+    {% endif %}
 
 </body>
-
 
 {% endblock %}

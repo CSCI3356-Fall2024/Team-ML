@@ -1,9 +1,13 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import logout
 from django.contrib.auth import login
-from .forms import UserProfileForm, CampaignForm
 from django.contrib.auth.decorators import login_required
-from .models import User
+from django.utils import timezone
+
+
+from .forms import UserProfileForm, CampaignForm
+from .models import User, Campaign
+
 
 
 # Create your views here.
@@ -67,10 +71,21 @@ def check(request):
 
 
 
-
+@login_required
 def campaign_list_view(request):
-   return render(request, 'campaign_list.html')
+  current_date = timezone.now().date()
+    
+  user_email = request.user.email
+  user = User.objects.filter(email=user_email).first()
+    
+  expired_campaigns = Campaign.objects.filter(enddate__lt=current_date)
+  active_campaigns = Campaign.objects.filter(enddate__gte=current_date)
 
+  return render(request, 'campaign_list.html', {
+    'user': user,
+    'expired_campaigns': expired_campaigns,
+    'active_campaigns': active_campaigns
+  })
 
 
 def create_campaign(request):
