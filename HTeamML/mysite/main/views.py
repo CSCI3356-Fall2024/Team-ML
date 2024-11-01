@@ -25,6 +25,9 @@ def rewards_view(request):
 def landing_view(request):
    return render(request, 'landing.html')
 
+def campaign_view(request):
+   return render(request, 'campaign.html')
+
 def profile_view(request):
   user = get_object_or_404(User, email=request.user.email)
   context = {
