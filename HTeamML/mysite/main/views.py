@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import logout
 from django.contrib.auth import login
-from .forms import UserProfileForm
+from .forms import UserProfileForm, CampaignForm
 from django.contrib.auth.decorators import login_required
 from .models import User
 
@@ -64,3 +64,12 @@ def check(request):
         return redirect('profile')  
     else:
         return redirect('create')  
+    
+
+def create_campaign(request):
+    form = CampaignForm()
+    if request.method == 'POST':
+        form = CampaignForm(request.POST)
+        if form.is_valid():
+            form.save()    
+    return render(request, 'campaign.html', {'form': form})

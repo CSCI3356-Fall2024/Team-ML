@@ -1,5 +1,5 @@
 from django import forms
-from .models import User
+from .models import User, Campaign
 
 class UserProfileForm(forms.ModelForm):
     class Meta:
@@ -24,3 +24,27 @@ class UserProfileForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(UserProfileForm, self).__init__(*args, **kwargs)
         self.fields['email'].widget.attrs['readonly'] = True
+
+class CampaignForm(forms.ModelForm):
+    class Meta:
+        model = Campaign
+        fields = [
+            'name',
+            'startdate',
+            'enddate',
+            'pointsreward',
+            'description',
+            'validationmethod'
+        ]
+        labels = {
+            'name': 'New Campaign Name',
+            'startdate': 'Start Date',
+            'enddate': 'End Date',
+            'pointsreward': 'Reward Points',
+            'description': 'Campaign Description',
+            'validationmethod': 'Validation Method'
+        }
+
+        def __init__(self, *args, **kwargs):
+            super(CampaignForm, self).__init__(*args, **kwargs)
+            

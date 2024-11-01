@@ -13,5 +13,5 @@ urlpatterns = [
   path('create/', views.profile_create_view, name='create'),
   path('check/', views.check, name='check'),
   path('landing/', views.landing_view, name='landing'),
-  path('campaign/', views.campaign_view, name='campaign')
+  path('campaign/', views.create_campaign, name='campaign')
 ]

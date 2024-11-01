@@ -15,7 +15,7 @@
             padding: 0px;
         }
         nav {
-            background-color: #263238;
+            background-color: red;
             color: white;
             padding: 10px;
             margin: 0;
@@ -29,7 +29,7 @@
         .nav-title a {
             margin: 0;
             margin-left: 20px;
-            color: red; 
+            color: black; 
             text-decoration: none;
         }
         .nav-links {
@@ -54,6 +54,7 @@
             justify-content: flex-end;
             margin-right: 25px;
         }
+        
     </style>
     <title>{% block title %}GreenUp!{% endblock %}</title>
 
@@ -76,8 +77,13 @@
     </nav>
 
     <div class="content">
-        {% block content %}
-        {% endblock %}
-    </div>
+      {% block content %}
+              <form method="POST">
+                  {% csrf_token %}
+                  {{ form.as_p }}
+                  <input type="submit" value="Save" />
+              </form>
+      {% endblock %}
+  </div>
 </body>
 </html>

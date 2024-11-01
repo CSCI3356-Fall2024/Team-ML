@@ -16,4 +16,14 @@ class User(models.Model):
     
     def __str__(self):
         return self.email
+    
+class Campaign(models.Model):
+    name = models.CharField(max_length= 255)
+    startdate = models.DateField()
+    enddate = models.DateField()
+    pointsreward = models.IntegerField()
+    description = models.TextField()
+    validationmethod = models.CharField(max_length= 255)
 
+    def __str__(self):
+        return self.name
