@@ -109,8 +109,8 @@ def complete_campaign(request, campaign_id):
     if campaign not in user.completed_campaigns.all():
         user.completed_campaigns.add(campaign)
         user.save()
-        messages.success(request, f"Campaign '{campaign.name}' marked as completed!")
+        messages.success(request, f"Campaign '{campaign.name}' completed!")
     else:
-        messages.info(request, f"Campaign '{campaign.name}' is already completed.")
+        messages.info(request, f"Error: Campaign '{campaign.name}' is already completed.")
     
     return redirect(reverse('campaign_list'))

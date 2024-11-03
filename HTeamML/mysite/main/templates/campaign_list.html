@@ -1,13 +1,5 @@
 {% extends 'base.html' %}
 
-{% if messages %}
-    <div>
-        {% for message in messages %}
-            <p>{{ message }}</p>
-        {% endfor %}
-    </div>
-{% endif %}
-
 {% block title %}Campaign List{% endblock %}
 {% load static %}
 
@@ -21,12 +13,25 @@
 
     <h1>Campaign List</h1>
 
-    <!-- Link to Create a New Campaign (Visible only to supervisors) -->
+    {% if messages %}
+    <div>
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+
+
+
+
     {% if user and user.supervisor %}
         <a href="{% url 'campaign_create' %}">Create a New Campaign</a>
     {% endif %}
 
-    <!-- Active Campaigns Section -->
+
+
+
     <h2>Active Campaigns</h2>
     {% if active_campaigns %}
         <ul>
@@ -60,6 +65,9 @@
     {% endif %}
 
 
+
+
+
     {% if user and user.supervisor %}
         <h2>Expired Campaigns</h2>
         {% if expired_campaigns %}
@@ -83,6 +91,9 @@
         {% endif %}
     {% endif %}
 
+
+
+    
     {% if user and not user.supervisor %}
         <h2>Past Completed Campaigns</h2>
         {% if expired_campaigns %} 
