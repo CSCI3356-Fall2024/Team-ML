@@ -1,16 +1,15 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth import logout
-from django.contrib.auth import login
+from django.contrib.auth import logout, login
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
+from django.contrib import messages
+from django.urls import reverse
 
 
 from .forms import UserProfileForm, CampaignForm
 from .models import User, Campaign
 
 
-
-# Create your views here.
 
 
 def logout_view(request):
@@ -98,3 +97,20 @@ def create_campaign(request):
         form = CampaignForm()
 
     return render(request, 'campaign_create.html', {'form': form})
+  
+  
+@login_required
+def complete_campaign(request, campaign_id):
+    campaign = get_object_or_404(Campaign, id=campaign_id)
+    
+    user_email = request.user.email
+    user = User.objects.filter(email=user_email).first()
+    
+    if campaign not in user.completed_campaigns.all():
+        user.completed_campaigns.add(campaign)
+        user.save()
+        messages.success(request, f"Campaign '{campaign.name}' marked as completed!")
+    else:
+        messages.info(request, f"Campaign '{campaign.name}' is already completed.")
+    
+    return redirect(reverse('campaign_list'))

@@ -1,5 +1,13 @@
 {% extends 'base.html' %}
 
+{% if messages %}
+    <div>
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    </div>
+{% endif %}
+
 {% block title %}Campaign List{% endblock %}
 {% load static %}
 
@@ -33,6 +41,17 @@
                     Points Reward: {{ campaign.pointsreward }}<br>
                     Description: {{ campaign.description }}<br>
                     Validation Method: {{ campaign.validationmethod }}
+
+                    {% if not user.supervisor %}
+                        {% if campaign not in user.completed_campaigns.all %}
+                            <form method="post" action="{% url 'campaign_complete' campaign.id %}">
+                                {% csrf_token %}
+                                <button type="submit">Complete</button>
+                            </form>
+                        {% else %}
+                            <p>Completed</p>
+                        {% endif %}
+                    {% endif %}
                 </li>
             {% endfor %}
         </ul>
