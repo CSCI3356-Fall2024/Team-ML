@@ -59,7 +59,7 @@
         <p>No active campaigns.</p>
     {% endif %}
 
-    <!-- Expired Campaigns Section (Visible only to supervisors) -->
+
     {% if user and user.supervisor %}
         <h2>Expired Campaigns</h2>
         {% if expired_campaigns %}
@@ -80,6 +80,28 @@
             </ul>
         {% else %}
             <p>No expired campaigns.</p>
+        {% endif %}
+    {% endif %}
+
+    {% if user and not user.supervisor %}
+        <h2>Past Completed Campaigns</h2>
+        {% if expired_campaigns %} 
+            <ul>
+                {% for campaign in expired_campaigns %}
+                    {% if campaign in user.completed_campaigns.all%}
+                    <li>
+                        <strong>{{ campaign.name }}</strong><br>
+                        Start Date: {{ campaign.startdate }}<br>
+                        End Date: {{ campaign.enddate }}<br>
+                        Points Reward: {{ campaign.pointsreward }}<br>
+                        Description: {{ campaign.description }}<br>
+                        Validation Method: {{ campaign.validationmethod }}
+                    </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No Completed campaigns.</p>
         {% endif %}
     {% endif %}
 
