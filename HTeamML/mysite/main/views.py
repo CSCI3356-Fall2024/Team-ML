@@ -47,7 +47,7 @@ def profile_create_view(request):
       profile = form.save(commit=False)
       profile.email = email
       profile.profile_completed = True
-      profile.save()  
+      profile.save() 
       return redirect('profile') 
   else:
     form = UserProfileForm(initial={'email': email})
@@ -108,6 +108,7 @@ def complete_campaign(request, campaign_id):
     
     if campaign not in user.completed_campaigns.all():
         user.completed_campaigns.add(campaign)
+        user.update_points()
         user.save()
         messages.success(request, f"Campaign '{campaign.name}' completed!")
     else:

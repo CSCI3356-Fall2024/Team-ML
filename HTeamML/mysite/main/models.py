@@ -18,15 +18,14 @@ class User(models.Model):
     supervisor = models.BooleanField(default=False)
     completed_campaigns = models.ManyToManyField('Campaign', related_name='users', blank=True)
     
-    def update_total_points(self):
+    def update_points(self):
         self.total_points = self.completed_campaigns.aggregate(total=Sum('pointsreward'))['total'] or 0
         # Temp current_points
         self.current_points = self.total_points
 
     def save(self, *args, **kwargs):
-        self.update_total_points()
         super().save(*args, **kwargs)
-        
+    
     def __str__(self):
         return self.email
     
