@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block title %} Supervisor Alert {% endblock %}
+
+{% block content %}
+
+
+<p>This page is only accessible to supervisors.</p>
+
+<a href="{% url 'landing' %}">Return to Home Page</a>
+
+{% endblock %}

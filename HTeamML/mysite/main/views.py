@@ -8,6 +8,21 @@ from django.urls import reverse
 from .forms import UserProfileForm, CampaignForm
 from .models import User, Campaign
 
+@login_required 
+def get_user(request):
+  return User.objects.filter(email=request.user.email).first()
+
+@login_required 
+def supervisor_check(request):
+  user = get_user(request)
+  if user is None or not user.supervisor:
+    return redirect('supervisor_alert')  
+
+  return None
+
+def supervisor_alert(request):
+  return render(request, 'supervisor_alert.html')
+
 def logout_view(request):
   logout(request)
   return redirect("home")
@@ -21,8 +36,6 @@ def actions_view(request):
 def rewards_view(request):
   return render(request, 'rewards.html')
 
-def landing_view(request):
-   return render(request, 'landing.html')
 
 def profile_view(request):
   user = get_object_or_404(User, email=request.user.email)
@@ -55,7 +68,6 @@ def check(request):
     google_email = request.user.email
 
     if User.objects.filter(email=google_email).exists():
-        existing_user = User.objects.get(email=google_email)
         return redirect('profile')  
     else:
         return redirect('profile_create')  
@@ -64,8 +76,7 @@ def check(request):
 def campaign_list_view(request):
   current_date = timezone.now().date()
 
-  user_email = request.user.email
-  user = User.objects.filter(email=user_email).first()
+  user = get_user(request)
 
   expired_campaigns = Campaign.objects.filter(enddate__lt=current_date)
   active_campaigns = Campaign.objects.filter(enddate__gte=current_date)
@@ -77,8 +88,10 @@ def campaign_list_view(request):
   })
 
 def create_campaign(request):
-    user_email = request.user.email
-    user = User.objects.filter(email=user_email).first()  # Get the user object
+    if supervisor_check(request):
+      return supervisor_check(request)
+    
+    user = get_user(request)
 
     if request.method == 'POST':
         form = CampaignForm(request.POST)
@@ -97,8 +110,7 @@ def create_campaign(request):
 def complete_campaign(request, campaign_id):
     campaign = get_object_or_404(Campaign, id=campaign_id)
 
-    user_email = request.user.email
-    user = User.objects.filter(email=user_email).first()
+    user = get_user(request)
 
     if campaign not in user.completed_campaigns.all():
         user.completed_campaigns.add(campaign)
