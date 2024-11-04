@@ -48,8 +48,12 @@ class CampaignForm(forms.ModelForm):
         }
         
         widgets = {
-            'startdate': forms.DateInput(attrs={'type': 'date'}),
-            'enddate': forms.DateInput(attrs={'type': 'date'}),
+            'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Edit name here'}),
+            'startdate': forms.DateInput(attrs={'type': 'date', 'class': 'form-control', 'placeholder': 'Choose date here'}),
+            'enddate': forms.DateInput(attrs={'type': 'date', 'class': 'form-control', 'placeholder': 'Choose date here'}),
+            'pointsreward': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Edit points here'}),
+            'description': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Edit Description here', 'rows': 3}),
+            'validationmethod': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Choose Method here'})
         }
         
         
