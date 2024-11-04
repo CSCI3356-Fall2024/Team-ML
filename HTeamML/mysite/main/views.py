@@ -86,7 +86,6 @@ def campaign_list_view(request):
     'active_campaigns': active_campaigns
   })
 
-
 def create_campaign(request):
     if request.method == 'POST':
         form = CampaignForm(request.POST)

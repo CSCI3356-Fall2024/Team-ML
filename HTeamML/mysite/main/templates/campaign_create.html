@@ -81,7 +81,11 @@
               <form method="POST">
                   {% csrf_token %}
                   {{ form.as_p }}
-                  <input type="submit" value="Save" />
+                  {% if user.is_staff %}
+                     <button type="submit">Save</button>
+                  {% else %}
+                     <button type="button" onclick="alert('You do not have permission to create a campaign.')" disabled>Save</button>
+                  {% endif %}
               </form>
       {% endblock %}
   </div>
