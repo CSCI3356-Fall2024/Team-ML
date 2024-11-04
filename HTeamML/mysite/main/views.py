@@ -107,3 +107,8 @@ def complete_campaign(request, campaign_id):
         messages.success(request, f"Campaign '{campaign.name}' completed!")
     else:
         messages.info(request, f"Error: Campaign '{campaign.name}' is already completed.")
+
+def landing_view(request):
+    top_users = User.objects.order_by('-total_points')[:5]
+    
+    return render(request, 'landing.html', {'top_users': top_users})

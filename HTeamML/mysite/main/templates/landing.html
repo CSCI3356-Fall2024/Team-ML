@@ -9,45 +9,19 @@
 <div class="landing-container">
     <div class="leaderboard-section">
         <h2>LEADERBOARD</h2>
+        
+        {% for user in top_users %}
         <div class="leaderboard-item">
             <img src="{% static 'images/Default_Avatar.png' %}">
             <div class="leaderboard-details">
-                <p><strong>Student Name</strong></p>
-                <p>School</p>
+                <p><strong>{{ user.fullname }}</strong></p>
+                <p>{{ user.school }}</p>
             </div>
-
-            <p class="points">100 pts</p> 
-            <!-- this is hardcoded, we should pull from database to replace these with variables -->
+            <p class="points">{{ user.total_points}} pts</p>
         </div>
-
-        <div class="leaderboard-item">
-            <img src="{% static 'images/Default_Avatar.png' %}">
-            <div class="leaderboard-details">
-                <p><strong>Student Name</strong></p>
-                <p>Boston College</p>
-            </div>
-            <p class="points">95 pts</p>
-            <!-- this is hardcoded, we should pull from database to replace these with variables -->
-        </div>
-
-        <div class="leaderboard-item">
-            <img src="{% static 'images/Default_Avatar.png' %}">
-            <div class="leaderboard-details">
-                <p><strong>Student Name</strong></p>
-                <p>Boston College</p>
-            </div>
-            <p class="points">90 pts</p>
-        </div>
-
-        <div class="leaderboard-item">
-            <img src="{% static 'images/Default_Avatar.png' %}">
-            <div class="leaderboard-details">
-                <p><strong>Student Name</strong></p>
-                <p>Boston College</p>
-            </div>
-            <p class="points">85 pts</p>
-            <!-- this is hardcoded, we should pull from database to replace these with variables -->
-        </div>
+        {% empty %}
+            <p>No users to display.</p>
+        {% endfor %}
     </div>
 
     <div class="news-feed-section">
