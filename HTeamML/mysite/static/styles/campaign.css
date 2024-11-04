@@ -127,7 +127,8 @@ img.avatar {
 .create-profile-form input[type="text"],
 .create-profile-form input[type="date"],
 .create-profile-form textarea,
-.create-profile-form select {
+.create-profile-form select,
+.create-profile-form input[type="number"] {
     width: 100%; 
     padding: 15px; 
     font-size: 1.2rem;
