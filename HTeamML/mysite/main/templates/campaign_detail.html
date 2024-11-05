@@ -8,41 +8,42 @@
 
 <div class="container">
     <h1>{{ campaign.name }}</h1>
+    
     <p><strong>Description:</strong> {{ campaign.description }}</p>
-    <p><strong>Location:</strong> {{ campaign.location }}</p>
     <p><strong>Start Date:</strong> {{ campaign.startdate }}</p>
     <p><strong>End Date:</strong> {{ campaign.enddate }}</p>
+    <p><strong>Points Reawrd:</strong> {{ campaign.pointsreward }}</p>
+    <p><strong>Validation Method:</strong> {{ campaign.validationmethod }}</p>
+    <p><strong>Campaign ID:</strong> {{ campaign.id }}</p>
     
-    {% if user.is_authenticated and user.supervisor %}
+
+
         <h2>Participants</h2>
         <table>
             <thead>
                 <tr>
                     <th>Full Name</th>
-                    <th>Day</th>
-                    <th>Time</th>
+                    <th>Completion Time</th>
                     <th>Location</th>
                     <th>Points</th>
                 </tr>
             </thead>
             <tbody>
-                {% for participant in participating_users %}
+                {% for c in campaign_completion_list %}
                 <tr>
-                    <td>{{ participant.fullname }}</td>
-                    <td>{{ participant.day }}</td>
-                    <td>{{ participant.time }}</td>
-                    <td>{{ participant.location }}</td>
-                    <td>{{ participant.points }}</td>
+                    <td>{{ c.user.fullname }}</td>
+                    <td>{{ c.completed_at|date:"F j, Y, g:i a" }}</td>
+                    <td>{{ c.location }}</td>
+                    <td>{{ c.campaign.pointsreward }}</td>
                 </tr>
                 {% empty %}
                 <tr>
-                    <td colspan="5" class="no-participants">No participants yet.</td>
+                    <td colspan="5">No participants yet.</td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
-    {% else %}
-        <p><em>This page is restricted to supervisors only.</em></p>
-    {% endif %}
+ 
+
 </div>
 {% endblock %}

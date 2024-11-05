@@ -42,7 +42,7 @@
             {% if active_campaigns %}
                 <ul>
                     {% for campaign in active_campaigns %}
-                        {% if user.supervisor or campaign in user.completed_campaigns.all %}
+
                             <div class="campaign-item">
                                 <div class="campaign-title">
                                     <a href="/campaign/{{ campaign.id }}">{{ campaign.name }}</a>
@@ -67,7 +67,7 @@
                                     {% endif %}
                                 {% endif %}
                             </div> 
-                        {% endif %}
+
                     {% endfor %}
                 </ul>
             {% else %}

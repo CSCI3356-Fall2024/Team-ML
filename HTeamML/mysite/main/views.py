@@ -6,7 +6,7 @@ from django.contrib import messages
 from django.urls import reverse
 
 from .forms import UserProfileForm, CampaignForm
-from .models import User, Campaign
+from .models import User, Campaign, CampaignCompletionInfo
 
 @login_required 
 def get_user(request):
@@ -116,36 +116,23 @@ def complete_campaign(request, campaign_id):
         user.completed_campaigns.add(campaign)
         user.update_points()
         user.save()
+        
+        CampaignCompletionInfo.objects.create(user=user, campaign=campaign)
+        
         return redirect('campaign_list')
     else:
         messages.info(request, f"Error: Campaign '{campaign.name}' is already completed.")
 
 @login_required
 def campaign_detail(request, campaign_id):
-    # Retrieve the specific campaign
-    campaign = get_object_or_404(Campaign, id=campaign_id)
+  campaign = get_object_or_404(Campaign, id=campaign_id)
     
-    # Collect participating users and their details
-    participating_users = []
-    non_supervisor_users = User.objects.filter(supervisor=False)
-
-    for user in non_supervisor_users:
-        if campaign in user.completed_campaigns.all():
-            # Collect participation details
-            participation = {
-                'name': user.name,  # Adjust 'name' if User model has a different field for names
-                'day': timezone.now().date(),  # Replace with actual participation date if tracked
-                'time': timezone.now().time(),  # Replace with actual participation time if tracked
-                'location': campaign.location,  # Assumes Campaign model has a 'location' field
-                'points': user.total_points,  # Adjust if points are tracked differently
-            }
-            participating_users.append(participation)
+  campaign_completion_list = CampaignCompletionInfo.objects.filter(campaign_id = campaign.id)
     
-    # Render the campaign detail template with campaign and participating users
-    return render(request, 'campaign_detail.html', {
-        'campaign': campaign,
-        'participating_users': participating_users,
-    })
+  return render(request, 'campaign_detail.html', {
+    'campaign': campaign,
+    'campaign_completion_list': campaign_completion_list,
+  })
 
 
 def landing_view(request):

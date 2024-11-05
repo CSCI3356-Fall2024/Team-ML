@@ -155,3 +155,5 @@ STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
 
+TIME_ZONE = 'America/New_York'  
+USE_TZ = True

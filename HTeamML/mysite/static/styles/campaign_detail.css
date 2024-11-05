@@ -1,3 +1,4 @@
+/* Base Styles */
 body {
     font-family: Arial, sans-serif;
     background-color: #f8f9fa; 
@@ -11,48 +12,54 @@ body {
     width: 85%;
     max-width: 1000px;
     margin: 20px auto;
-    padding: 20px;
+    padding: 25px;
     background-color: #ffffff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
 }
 
+/* Heading and Text */
 h1 {
     color: #343a40; 
-    font-size: 2rem;
+    font-size: 2.2rem;
     text-align: center;
     margin-bottom: 20px;
 }
 
 p {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     color: #495057; 
-    margin: 10px 0;
+    margin: 12px 0;
 }
 
+/* Table Styling */
 table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
+    font-size: 0.95rem;
 }
 
 thead th {
     background-color: #343a40; 
     color: #ffffff;
-    padding: 10px;
-    font-weight: bold;
+    padding: 12px;
     text-align: left;
-    font-size: 1rem;
+    font-weight: bold;
+    border-bottom: 2px solid #ddd;
 }
 
 tbody tr:nth-child(even) {
-    background-color: #f2f2f2;
+    background-color: #f9f9f9;
+}
+
+tbody tr:hover {
+    background-color: #f1f1f1;
 }
 
 td, th {
-    padding: 10px;
+    padding: 12px;
     border: 1px solid #ddd;
-    font-size: 0.95rem;
 }
 
 .no-participants {
@@ -63,10 +70,11 @@ td, th {
     font-style: italic;
 }
 
+/* Button Styling */
 button {
     background-color: #28a745; 
     color: #ffffff;
-    padding: 0.5rem 1rem;
+    padding: 0.6rem 1.2rem;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -78,6 +86,7 @@ button:hover {
     background-color: #218838;
 }
 
+/* Mobile Responsive Table */
 @media (max-width: 768px) {
     .container {
         width: 95%;
@@ -93,21 +102,25 @@ button:hover {
 
     tr {
         margin-bottom: 15px;
+        border-bottom: 1px solid #ddd;
     }
 
     td {
         padding: 10px;
         text-align: right;
         position: relative;
+        border: none;
+        border-bottom: 1px solid #ddd;
     }
 
     td::before {
         content: attr(data-label);
         position: absolute;
         left: 0;
-        width: 50%;
-        padding-left: 15px;
+        width: 45%;
+        padding-left: 10px;
         font-weight: bold;
+        color: #343a40;
         text-align: left;
     }
 }

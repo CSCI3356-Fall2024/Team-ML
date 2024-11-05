@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.db.models import Sum
+from django.conf import settings
 
 class User(models.Model):
     gradYearOptions = [(2025, "2025"), (2026, "2026"), (2027, "2027"), (2028, "2028"),]
@@ -46,3 +47,16 @@ class Campaign(models.Model):
     
     def __str__(self):
         return self.name
+    
+    
+class CampaignCompletionInfo(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    campaign = models.ForeignKey(Campaign, on_delete=models.CASCADE)
+    completed_at = models.DateTimeField(auto_now_add=True)  
+    location = models.CharField(max_length= 255, default = '#')
+    
+    class Meta:
+        unique_together = ('user', 'campaign')  
+
+    def __str__(self):
+        return f"{self.user.fullname} - {self.campaign.name} completed at {self.completed_at}"
