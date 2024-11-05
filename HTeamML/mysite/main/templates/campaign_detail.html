@@ -7,19 +7,19 @@
 <link rel="stylesheet" href="{% static 'styles/campaign_detail.css' %}">
 
 <div class="container">
-    <h1>{{ campaign.name }}</h1>
+    <h1 class="campaign-detail-title">{{ campaign.name }}</h1>
     
-    <p><strong>Description:</strong> {{ campaign.description }}</p>
-    <p><strong>Start Date:</strong> {{ campaign.startdate }}</p>
-    <p><strong>End Date:</strong> {{ campaign.enddate }}</p>
-    <p><strong>Points Reawrd:</strong> {{ campaign.pointsreward }}</p>
-    <p><strong>Validation Method:</strong> {{ campaign.validationmethod }}</p>
-    <p><strong>Campaign ID:</strong> {{ campaign.id }}</p>
+    <p class="campaign-detail"><strong>Description:</strong> {{ campaign.description }}</p>
+    <p class="campaign-detail"><strong>Start Date:</strong> {{ campaign.startdate }}</p>
+    <p class="campaign-detail"><strong>End Date:</strong> {{ campaign.enddate }}</p>
+    <p class="campaign-detail"><strong>Points Reawrd:</strong> {{ campaign.pointsreward }}</p>
+    <p class="campaign-detail"><strong>Validation Method:</strong> {{ campaign.validationmethod }}</p>
+    <p class="campaign-detail"><strong>Campaign ID:</strong> {{ campaign.id }}</p>
     
 
 
         <h2>Participants</h2>
-        <table>
+        <table class="campaign-completion-list">
             <thead>
                 <tr>
                     <th>Full Name</th>
