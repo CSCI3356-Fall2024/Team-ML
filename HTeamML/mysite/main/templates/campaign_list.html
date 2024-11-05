@@ -42,7 +42,7 @@
             {% if active_campaigns %}
                 <ul>
                     {% for campaign in active_campaigns %}
-                        {% if user.supervisor or campaign not in user.completed_campaigns.all %}
+                        {% if user.supervisor or campaign in user.completed_campaigns.all %}
                             <div class="campaign-item">
                                 <div class="campaign-title">{{ campaign.name }}</div>
                                 <div class="campaign-dates">{{ campaign.startdate }} - {{ campaign.enddate }}</div>
