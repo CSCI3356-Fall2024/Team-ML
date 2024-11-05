@@ -111,13 +111,15 @@
             {% if user and user.completed_campaigns.all %} 
                 <ul>
                     {% for campaign in user.completed_campaigns.all %}
-                        <div class="campaign-item">
-                            <div class="campaign-title">{{campaign.name}}</div>
-                            <div class="campaign-dates">{{campaign.startdate}} - {{campaign.enddate}}</div>
-                            <div class="campaign-points">{{campaign.pointsreward}} Points</div>
-                            <div class="campaign-description">Description: {{campaign.description}}</div>
-                            <div class="campaign-validation">Validation Method: {{campaign.validationmethod}}</div>
-                        </div>
+                        {% if campaign in expired_campaigns%}
+                            <div class="campaign-item">
+                                <div class="campaign-title">{{campaign.name}}</div>
+                                <div class="campaign-dates">{{campaign.startdate}} - {{campaign.enddate}}</div>
+                                <div class="campaign-points">{{campaign.pointsreward}} Points</div>
+                                <div class="campaign-description">Description: {{campaign.description}}</div>
+                                <div class="campaign-validation">Validation Method: {{campaign.validationmethod}}</div>
+                            </div>
+                        {% endif %}
                     {% endfor %}
                 </ul>
             {% else %}

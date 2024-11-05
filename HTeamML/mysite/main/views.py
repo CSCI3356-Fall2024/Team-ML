@@ -97,7 +97,7 @@ def create_campaign(request):
         form = CampaignForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('home') 
+            return redirect('campaign_list') 
     else:
         form = CampaignForm()
 
@@ -116,7 +116,7 @@ def complete_campaign(request, campaign_id):
         user.completed_campaigns.add(campaign)
         user.update_points()
         user.save()
-        return redirect('home')
+        return redirect('campaign_list')
     else:
         messages.info(request, f"Error: Campaign '{campaign.name}' is already completed.")
 
