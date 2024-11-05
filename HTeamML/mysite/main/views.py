@@ -116,7 +116,7 @@ def complete_campaign(request, campaign_id):
         user.completed_campaigns.add(campaign)
         user.update_points()
         user.save()
-        messages.success(request, f"Campaign '{campaign.name}' completed!")
+        return redirect('home')
     else:
         messages.info(request, f"Error: Campaign '{campaign.name}' is already completed.")
 
