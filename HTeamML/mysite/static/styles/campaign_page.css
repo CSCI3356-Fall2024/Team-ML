@@ -109,6 +109,10 @@ button:hover {
     background-color: #218838;
 }
 
+.title{
+    margin-left: 1rem;
+}
+
 .create-campaign-btn {
     display: inline-block;
     background-color: #28a745; 
