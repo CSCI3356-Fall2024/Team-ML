@@ -130,3 +130,13 @@ button:hover {
     background-color: #218838; 
     transform: scale(1.05); 
 }
+
+.campaign-title a {
+    color: black;         
+    text-decoration: none;
+}
+
+.campaign-title a:hover {
+    color: darkslategray;       
+    text-decoration: none;  
+}

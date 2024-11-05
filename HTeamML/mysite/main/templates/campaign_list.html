@@ -44,7 +44,9 @@
                     {% for campaign in active_campaigns %}
                         {% if user.supervisor or campaign in user.completed_campaigns.all %}
                             <div class="campaign-item">
-                                <div class="campaign-title">{{ campaign.name }}</div>
+                                <div class="campaign-title">
+                                    <a href="/campaign/{{ campaign.id }}">{{ campaign.name }}</a>
+                                </div>
                                 <div class="campaign-dates">{{ campaign.startdate }} - {{ campaign.enddate }}</div>
                                 <div class="campaign-points">{{ campaign.pointsreward }} Points</div>
                                 <div class="campaign-description">Description: {{ campaign.description }}</div>

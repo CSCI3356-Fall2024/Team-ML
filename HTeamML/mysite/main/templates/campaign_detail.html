@@ -1,3 +1,6 @@
+{% extends 'base.html' %}
+
+{% block content %}
 <h1>{{ campaign.name }}</h1>
 <p>Description: {{ campaign.description }}</p>
 <p>Location: {{ campaign.location }}</p>
@@ -31,3 +34,4 @@
         {% endfor %}
     </tbody>
 </table>
+{% endblock %}
