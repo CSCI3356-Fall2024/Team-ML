@@ -15,6 +15,7 @@ urlpatterns = [
   path('landing/', views.landing_view, name='landing'),
   path('campaign_create/', views.create_campaign, name='campaign_create'),
   path('campaign_list/', views.campaign_list_view, name='campaign_list'),
+  path('campaign/<int:campaign_id>/', views.campaign_detail, name='campaign_detail'),
   path('campaign/<int:campaign_id>/complete/', views.complete_campaign, name='campaign_complete'),
   path('supervisor_alert/', views.supervisor_alert, name='supervisor_alert'),
 ]

@@ -1,0 +1,33 @@
+<h1>{{ campaign.name }}</h1>
+<p>Description: {{ campaign.description }}</p>
+<p>Location: {{ campaign.location }}</p>
+<p>Start Date: {{ campaign.startdate }}</p>
+<p>End Date: {{ campaign.enddate }}</p>
+
+<h2>Participants</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Day</th>
+            <th>Time</th>
+            <th>Location</th>
+            <th>Points</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for participant in participating_users %}
+        <tr>
+            <td>{{ participant.name }}</td>
+            <td>{{ participant.day }}</td>
+            <td>{{ participant.time }}</td>
+            <td>{{ participant.location }}</td>
+            <td>{{ participant.points }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="5">No participants yet.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
