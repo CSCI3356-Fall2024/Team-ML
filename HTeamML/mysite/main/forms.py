@@ -1,5 +1,5 @@
 from django import forms
-from .models import User, Campaign
+from .models import User, Campaign, Reward
 from django.core.exceptions import ValidationError
 from django.utils import timezone
 
@@ -59,7 +59,7 @@ class CampaignForm(forms.ModelForm):
         
         def __init__(self, *args, **kwargs):
             super(CampaignForm, self).__init__(*args, **kwargs)
-            
+
     def clean(self):
         cleaned_data = super().clean()
         startdate = cleaned_data.get('startdate')
@@ -72,3 +72,32 @@ class CampaignForm(forms.ModelForm):
             raise ValidationError("Error: End date must be in the future.")
 
         return cleaned_data
+    
+class RewardForm(forms.ModelForm):
+    class Meta:
+        model = Reward
+        fields = ['name', 'startdate', 'enddate', 'pointsrequired', 'description']
+        labels = {
+            'name': 'Reward Name',
+            'startdate': 'Start Date',
+            'enddate': 'End Date',
+            'pointsrequired': 'Points Required',
+            'description': 'Description'
+        }
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'startdate': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
+            'enddate': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
+            'pointsrequired': forms.NumberInput(attrs={'class': 'form-control'}),
+            'description': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
+        }
+
+    def clean(self):
+        cleaned_data = super().clean()
+        startdate = cleaned_data.get('startdate')
+        enddate = cleaned_data.get('enddate')
+
+        if enddate and startdate and enddate <= startdate:
+            raise ValidationError("End date must be after the start date.")
+        return cleaned_data
+        

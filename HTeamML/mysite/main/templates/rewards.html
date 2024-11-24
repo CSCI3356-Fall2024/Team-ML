@@ -1,3 +1,41 @@
 {% extends 'base.html' %}
+{% block title %}Rewards List{% endblock %}
+{% block content %}
+<h1>Rewards List</h1>
 
-{% block title %} Rewards {% endblock %}
+{% if user and user.supervisor %}
+    <div class="button-container">
+        <a href="{% url 'rewards_create' %}" class="btn btn-primary">Add Reward</a>
+    </div>
+{% endif %}
+
+<div class="rewards-container">
+    <div class="column">
+        <h2>Active Rewards</h2>
+        {% for reward in active_rewards %}
+            <div class="reward-item">
+                <h3>{{ reward.name }}</h3>
+                <p>{{ reward.description }}</p>
+                <p>Points Required: {{ reward.pointsrequired }}</p>
+                <p>Available: {{ reward.startdate }} - {{ reward.enddate }}</p>
+            </div>
+        {% empty %}
+            <p>No active rewards.</p>
+        {% endfor %}
+    </div>
+
+    <div class="column">
+        <h2>Expired Rewards</h2>
+        {% for reward in expired_rewards %}
+            <div class="reward-item">
+                <h3>{{ reward.name }}</h3>
+                <p>{{ reward.description }}</p>
+                <p>Points Required: {{ reward.pointsrequired }}</p>
+                <p>Expired: {{ reward.enddate }}</p>
+            </div>
+        {% empty %}
+            <p>No expired rewards.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

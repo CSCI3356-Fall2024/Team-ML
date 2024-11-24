@@ -5,8 +5,9 @@ from django.utils import timezone
 from django.contrib import messages
 from django.urls import reverse
 
-from .forms import UserProfileForm, CampaignForm
-from .models import User, Campaign, CampaignCompletionInfo
+from .forms import UserProfileForm, CampaignForm, RewardForm
+from .models import User, Campaign, CampaignCompletionInfo, Reward
+
 
 @login_required 
 def get_user(request):
@@ -139,3 +140,30 @@ def landing_view(request):
     top_users = User.objects.order_by('-total_points')[:5]
     
     return render(request, 'landing.html', {'top_users': top_users})
+
+@login_required
+def reward_list_view(request):
+    current_date = timezone.now().date()
+    active_rewards = Reward.objects.filter(enddate__gte=current_date)
+    expired_rewards = Reward.objects.filter(enddate__lt=current_date)
+
+    return render(request, 'rewards.html', {
+        'active_rewards': active_rewards,
+        'expired_rewards': expired_rewards,
+        'user': request.user,
+    })
+
+@login_required
+def reward_create_view(request):
+    if request.method == 'POST':
+        form = RewardForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('reward_list')
+    else:
+        form = RewardForm()
+
+    return render(request, 'rewards_create.html', {
+        'form': form,
+        'user': request.user
+    })

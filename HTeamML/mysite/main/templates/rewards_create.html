@@ -1,70 +1,10 @@
-{% load static %}
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="{% static 'styles/campaign.css' %}">
-</head>
-
-<body>
-    <nav>
-        <div class="nav-container">
-            <div class="nav-title">
-                <em><h1><a href="{% url 'landing' %}" style="color: white;">GreenUp! Administrator</a></h1></em>
-            </div>
-
-            <div class="nav-links">
-                <ul>
-                    <em><li><a href="{% url 'profile' %}">Profile</a></li></em>
-                </ul>
-            </div>
-        </div>
-
-    </nav>
-    <div class="name">
-        <div class="name-header">
-            <img class="avatar" src="{% static 'images/Default_Avatar.png' %}" alt="Avatar">
-            <div class="user-details">
-                <h2>{{ user.fullname }}</h2>
-                <p>{{ user.email }}</p>
-            </div>
-        </div>
-    </div>
-    <div class="create-profile-form">
-        {% block content %}
-        <form method="POST">
-            {% csrf_token %}
-            <div class = "left">
-                <label for="name">New Reward</label>
-                {{ form.name }}
-
-                <label for="startdate">Start Date</label>
-                {{ form.startdate }}
-
-                <label for="enddate">End Date</label>
-                {{ form.enddate }}
-
-                <label for="pointsreward">Points Required to Redeem</label>
-                {{ form.pointsreward }}
-            </div>
-
-            <div class = "right">
-                <label for="description">Campaign Description</label>
-                {{ form.description }}
-
-                <div class="post-button">
-                    {% if user.supervisor %}
-                        <button type="submit">Save</button>
-                    {% else %}
-                        <button type="button" onclick="alert('You do not have permission to create a campaign.')" disabled>Post</button>
-                    {% endif %}
-                </div>
-            </div>
-        </form>
-        {% endblock %}
-    </div>
-</div>
-</body>
+{% extends 'base.html' %}
+{% block title %}Create Reward{% endblock %}
+{% block content %}
+<h1>Create a New Reward</h1>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Create Reward</button>
+</form>
+{% endblock %}

@@ -18,4 +18,6 @@ urlpatterns = [
   path('campaign/<int:campaign_id>/', views.campaign_detail, name='campaign_detail'),
   path('campaign/<int:campaign_id>/complete/', views.complete_campaign, name='campaign_complete'),
   path('supervisor_alert/', views.supervisor_alert, name='supervisor_alert'),
+  path('rewards/', views.reward_list_view, name='reward_list'),
+  path('rewards_create/', views.reward_create_view, name='rewards_create'),
 ]
