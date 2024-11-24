@@ -144,14 +144,18 @@ def landing_view(request):
 @login_required
 def reward_list_view(request):
     current_date = timezone.now().date()
+    
+    user = get_user(request)
+   
     active_rewards = Reward.objects.filter(enddate__gte=current_date)
     expired_rewards = Reward.objects.filter(enddate__lt=current_date)
 
     return render(request, 'rewards.html', {
-        'active_rewards': active_rewards,
-        'expired_rewards': expired_rewards,
-        'user': request.user,
+      'user': user, 
+      'active_rewards': active_rewards,
+      'expired_rewards': expired_rewards,
     })
+
 
 @login_required
 def reward_create_view(request):

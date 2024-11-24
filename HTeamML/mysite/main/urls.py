@@ -8,7 +8,6 @@ urlpatterns = [
   path("", views.home_view, name="home"),
   path("logout/", views.logout_view, name="logout"),
   path('actions/', views.actions_view, name='actions'), 
-  path('rewards/', views.rewards_view, name='rewards'),
   path('profile/', views.profile_view, name='profile'),
   path('profile_create/', views.profile_create_view, name='profile_create'),
   path('check/', views.check, name='check'),
@@ -18,6 +17,6 @@ urlpatterns = [
   path('campaign/<int:campaign_id>/', views.campaign_detail, name='campaign_detail'),
   path('campaign/<int:campaign_id>/complete/', views.complete_campaign, name='campaign_complete'),
   path('supervisor_alert/', views.supervisor_alert, name='supervisor_alert'),
-  path('rewards/', views.reward_list_view, name='reward_list'),
+  path('rewards_list/', views.reward_list_view, name='rewards_list'),
   path('rewards_create/', views.reward_create_view, name='rewards_create'),
 ]

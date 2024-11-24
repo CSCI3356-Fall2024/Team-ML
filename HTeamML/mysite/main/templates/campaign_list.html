@@ -10,10 +10,6 @@
     <link rel="stylesheet" type="text/css" href="{% static 'styles/campaign_page.css' %}">
 </head>
 
-<head>
-    <title>Campaign List</title>
-</head>
-
 <body>
 
     <h1 class = "title">Campaign List</h1>
@@ -25,9 +21,6 @@
         {% endfor %}
     </div>
     {% endif %}
-
-
-
 
 
     {% if user and user.supervisor %}
