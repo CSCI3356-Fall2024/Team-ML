@@ -163,7 +163,7 @@ def reward_create_view(request):
         form = RewardForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('reward_list')
+            return redirect('rewards_list')
     else:
         form = RewardForm()
 

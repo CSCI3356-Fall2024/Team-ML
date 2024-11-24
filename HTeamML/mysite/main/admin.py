@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import User, Campaign, CampaignCompletionInfo
+from .models import User, Campaign, CampaignCompletionInfo, Reward
 
 
 class UserAdmin(admin.ModelAdmin):
@@ -26,12 +26,12 @@ class UserAdmin(admin.ModelAdmin):
         'total_points', 
         'profile_completed', 
         'supervisor',
-        'completed_campaigns',  # Make completed_campaigns editable here
+        'completed_campaigns',  
     )
     
-    readonly_fields = ('id',)  # No need to make completed_campaigns readonly
+    readonly_fields = ('id',)  
     
-    filter_horizontal = ('completed_campaigns',)  # Adds a horizontal widget for many-to-many fields
+    filter_horizontal = ('completed_campaigns',)  
 
     def display_completed_campaigns(self, obj):
         return ", ".join([campaign.name for campaign in obj.completed_campaigns.all()])
@@ -56,3 +56,13 @@ class CampaignCompletionInfoAdmin(admin.ModelAdmin):
     search_fields = ('user__fullname', 'campaign__name', 'location')
 
 admin.site.register(CampaignCompletionInfo, CampaignCompletionInfoAdmin)
+
+
+class RewardAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name', 'startdate', 'enddate', 'pointsrequired')
+    
+    fields = ('id', 'name', 'startdate', 'enddate', 'pointsrequired', 'description')
+
+    readonly_fields = ('id',)  
+
+admin.site.register(Reward, RewardAdmin)
