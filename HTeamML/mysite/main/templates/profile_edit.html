@@ -4,6 +4,15 @@
 {% load static %}
 
 {% block content %}
+<head>
+  <style>
+  .container {
+    display: flex;
+    justify-content: center; 
+    margin-top: 50px; 
+}
+</style>
+</head>
   <div class="container">
     <form method="post">
       {% csrf_token %}
