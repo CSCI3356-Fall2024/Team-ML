@@ -46,8 +46,8 @@
                                 {% endif %}
                                 
                                 {% if not user.supervisor %}
-                                    {% if reward not in user.completed_campaigns.all %}
-                                        <form method="post" action="{% url 'campaign_complete' campaign.id %}">
+                                    {% if reward not in user.redeemed_rewards.all %}
+                                        <form method="post" action="{% url 'reward_redeem' reward.id %}">
                                             {% csrf_token %}
                                             <button type="submit">Redeem</button>
                                         </form>
@@ -60,7 +60,7 @@
                     {% endfor %}
                 </ul>
             {% else %}
-                <p>No active campaigns.</p>
+                <p>No active rewards.</p>
             {% endif %}
         </div>
 
@@ -71,24 +71,23 @@
 
     {% if user and user.supervisor %}
         <div class="column">
-            <h2>Expired Campaigns</h2>
-            {% if expired_campaigns %}
+            <h2>Expired Rewards</h2>
+            {% if expired_rewards %}
                 <ul>
-                    {% for campaign in expired_campaigns %}
+                    {% for reward in expired_campaigns %}
                             <div class="campaign-item">
-                                <div class="campaign-title">{{campaign.name}}</div>
-                                <div class="campaign-dates">{{campaign.startdate}} - {{campaign.enddate}}</div>
-                                <div class="campaign-points">{{campaign.pointsreward}} Points</div>
-                                <div class="campaign-description">Description: {{campaign.description}}</div>
-                                <div class="campaign-validation">Validation Method: {{campaign.validationmethod}}</div>
+                                <div class="campaign-title">{{reward.name}}</div>
+                                <div class="campaign-dates">{{reward.startdate}} - {{reward.enddate}}</div>
+                                <div class="campaign-points">{{reward.pointsrequiredeward}} Points</div>
+                                <div class="campaign-description">Description: {{reward.description}}</div>
                                 {% if user and user.supervisor %}
-                                    <strong>Campaign ID: {{ campaign.id }}</strong>
+                                    <strong>Campaign ID: {{ reward.id }}</strong>
                                 {% endif %}
                             </div>
                     {% endfor %}
                 </ul>
             {% else %}
-                <p>No expired campaigns.</p>
+                <p>No expired rewards.</p>
             {% endif %}
             </div>
     {% endif %}
