@@ -26,7 +26,7 @@ header a {
   padding: 1rem;
 }
 
-.rewards-container {
+.campaign-container {
   display: flex;
   gap: 0.5rem; 
 }
@@ -47,7 +47,7 @@ header a {
   text-align: center;
 }
 
-.reward-item {
+.campaign-item {
   background-color: #ffffff;
   padding: 1rem;
   border: 1px solid #ddd;
@@ -57,35 +57,41 @@ header a {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.reward-item:hover {
+.campaign-item:hover {
   transform: scale(1.02);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.reward-item .reward-title {
+.campaign-item .campaign-title {
   font-size: 2rem;
   font-weight: bold;
   color: #343a40;
   margin-bottom: 0.5rem;
 }
 
-.reward-item .reward-points {
+.campaign-item .campaign-points {
   font-size: 1rem;
   color: #28a745; 
   font-weight: bold;
   margin-bottom: 0.5rem;
 }
 
-.reward-item .reward-dates {
+.campaign-item .campaign-dates {
   font-size: 1rem;
   color: #6c757d;
   margin-bottom: 0.5rem;
 }
 
-.reward-item .reward-description {
+.campaign-item .campaign-description {
   font-size: 1rem;
   color: #495057;
   margin-bottom: 0.5rem;
+}
+
+.campaign-item .campaign-validation {
+  font-size: 1rem;
+  color: #6c757d;
+  font-style: italic;
 }
 
 button {
@@ -103,11 +109,11 @@ button:hover {
   background-color: #218838;
 }
 
-.title {
+.title{
   margin-left: 1rem;
 }
 
-.create-reward-btn {
+.create-campaign-btn {
   display: inline-block;
   background-color: #28a745; 
   color: #ffffff;
@@ -121,20 +127,20 @@ button:hover {
   text-decoration: none; 
   margin-bottom: 1rem;
   transition: background-color 0.3s ease, transform 0.2s ease;
-  margin-left: 1rem;
+  margin-left: 1rem
 }
 
-.create-reward-btn:hover {
+.create-campaign-btn:hover {
   background-color: #218838; 
   transform: scale(1.05); 
 }
 
-.reward-title a {
+.campaign-title a {
   color: black;         
   text-decoration: none;
 }
 
-.reward-title a:hover {
+.campaign-title a:hover {
   color: darkslategray;       
   text-decoration: none;  
 }

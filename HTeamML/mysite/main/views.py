@@ -178,18 +178,22 @@ def reward_list_view(request):
 
 @login_required
 def reward_create_view(request):
-    if request.method == 'POST':
-        form = RewardForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('rewards_list')
-    else:
-        form = RewardForm()
+  if supervisor_check(request):
+      return supervisor_check(request)
+    
+  user = get_user(request)
+  if request.method == 'POST':
+      form = RewardForm(request.POST)
+      if form.is_valid():
+          form.save()
+          return redirect('rewards_list')
+  else:
+      form = RewardForm()
 
-    return render(request, 'rewards_create.html', {
-        'form': form,
-        'user': request.user
-    })
+  return render(request, 'rewards_create.html', {
+      'form': form,
+      'user': request.user
+})
     
     
     

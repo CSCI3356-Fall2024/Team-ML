@@ -7,7 +7,7 @@
 
 <head>
     <title>Rewards List</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'styles/rewards.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/campaign_page.css' %}">
 </head>
 
 <body>
@@ -32,70 +32,66 @@
             {% if active_rewards %}
                 <ul>
                     {% for reward in active_rewards %}
-                        <div class="campaign-item">
-                            <div class="campaign-title">
-                                <strong>{{ reward.name }}</strong>
-                            </div>
-                            <div class="campaign-dates">
-                                Available: {{ reward.startdate }} - {{ reward.enddate }}
-                            </div>
-                            <div class="campaign-points">
-                                Points Required: {{ reward.pointsrequired }}
-                            </div>
-                            <div class="campaign-description">
-                                Description: {{ reward.description }}
-                            </div>
-                        </div>
 
-
-                        {% if not user.supervisor %}
-                            {% if reward not in user.redeemed_rewards.all %}
-                                <form method="post" action="{% url 'reward_redeem' reward.id %}">
-                                        {% csrf_token %}
-                                    <button type="submit">Redeem</button>
-                                </form>
-                            {% else %}
-                                <p>Redeemed</p>
-                            {% endif %}
-                        {% endif %}
-
+                            <div class="campaign-item">
+                                <div class="campaign-title">
+                                    <a href="/campaign/{{ campaign.id }}">{{ campaign.name }}</a>
+                                </div>
+                                <div class="campaign-dates">{{ reward.startdate }} - {{ reward.enddate }}</div>
+                                <div class="campaign-points">Points Required: {{ reward.pointsrequired }}</div>
+                                <div class="campaign-description">Description: {{ reward.description }}</div>
+                                
+                                {% if user and user.supervisor %}
+                                    <strong>Campaign ID: {{ campaign.id }}</strong><br>
+                                {% endif %}
+                                
+                                {% if not user.supervisor %}
+                                    {% if reward not in user.completed_campaigns.all %}
+                                        <form method="post" action="{% url 'campaign_complete' campaign.id %}">
+                                            {% csrf_token %}
+                                            <button type="submit">Redeem</button>
+                                        </form>
+                                    {% else %}
+                                        <p>Redeemed</p>
+                                    {% endif %}
+                                {% endif %}
+                            </div> 
 
                     {% endfor %}
                 </ul>
             {% else %}
-                <p>No active rewards.</p>
+                <p>No active campaigns.</p>
             {% endif %}
         </div>
 
-        {% if user and user.supervisor %}
-        <!-- Expired Rewards Section -->
+
+
+
+
+
+    {% if user and user.supervisor %}
         <div class="column">
-            <h2>Expired Rewards</h2>
-            {% if expired_rewards %}
+            <h2>Expired Campaigns</h2>
+            {% if expired_campaigns %}
                 <ul>
-                    {% for reward in expired_rewards %}
-                        <div class="campaign-item">
-                            <div class="campaign-title">
-                                <strong>{{ reward.name }}</strong>
+                    {% for campaign in expired_campaigns %}
+                            <div class="campaign-item">
+                                <div class="campaign-title">{{campaign.name}}</div>
+                                <div class="campaign-dates">{{campaign.startdate}} - {{campaign.enddate}}</div>
+                                <div class="campaign-points">{{campaign.pointsreward}} Points</div>
+                                <div class="campaign-description">Description: {{campaign.description}}</div>
+                                <div class="campaign-validation">Validation Method: {{campaign.validationmethod}}</div>
+                                {% if user and user.supervisor %}
+                                    <strong>Campaign ID: {{ campaign.id }}</strong>
+                                {% endif %}
                             </div>
-                            <div class="campaign-dates">
-                                Expired: {{ reward.enddate }}
-                            </div>
-                            <div class="campaign-points">
-                                Points Required: {{ reward.pointsrequired }}
-                            </div>
-                            <div class="campaign-description">
-                                Description: {{ reward.description }}
-                            </div>
-                        </div>
                     {% endfor %}
                 </ul>
             {% else %}
-                <p>No expired rewards.</p>
+                <p>No expired campaigns.</p>
             {% endif %}
-        </div>
-        {% endif %}
-    </div>
+            </div>
+    {% endif %}
 
 </body>
 
