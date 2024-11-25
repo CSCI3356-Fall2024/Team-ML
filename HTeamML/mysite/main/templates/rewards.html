@@ -13,7 +13,9 @@
 <body>
 
     <h1 class="title">Rewards List</h1>
-    <h2 class="current-points">Current Points: {{ user.current_points }}</h2>
+    {% if user and not user.supervisor%}
+        <h2 class="current-points">Current Points: {{ user.current_points }}</h2>
+    {% endif %}
 
     {% if messages %}
     <div>
@@ -36,7 +38,7 @@
 
                             <div class="campaign-item">
                                 <div class="campaign-title">
-                                    <a href="/campaign/{{ campaign.id }}">{{ campaign.name }}</a>
+                                    <a href="/reward/{{ reward.id }}">{{ reward.name }}</a>
                                 </div>
                                 <div class="campaign-dates">{{ reward.startdate }} - {{ reward.enddate }}</div>
                                 <div class="campaign-points">Points Required: {{ reward.pointsrequired }}</div>
