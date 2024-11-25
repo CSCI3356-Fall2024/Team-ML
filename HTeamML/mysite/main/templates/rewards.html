@@ -46,6 +46,20 @@
                                 Description: {{ reward.description }}
                             </div>
                         </div>
+
+
+                        {% if not user.supervisor %}
+                            {% if reward not in user.redeemed_rewards.all %}
+                                <form method="post" action="{% url 'reward_redeem' reward.id %}">
+                                        {% csrf_token %}
+                                    <button type="submit">Redeem</button>
+                                </form>
+                            {% else %}
+                                <p>Redeemed</p>
+                            {% endif %}
+                        {% endif %}
+
+
                     {% endfor %}
                 </ul>
             {% else %}

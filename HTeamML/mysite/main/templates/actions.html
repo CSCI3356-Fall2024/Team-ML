@@ -1,3 +1,30 @@
 {% extends 'base.html' %}
 
-{% block title %} Actions {% endblock %}
+{% block title %}Actions{% endblock %}
+
+{% block content %}
+<h1>{{ user.fullname }}'s Activity List</h1>
+
+{% if activities %}
+    <table>
+        <thead>
+            <tr>
+                <th>Activity Name</th>
+                <th>Points</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for activity in activities %}
+            <tr>
+                <td>{{ activity.0 }}</td> 
+                <td>{{ activity.1 }}</td> 
+                <td>{{ activity.2|date:"F j, Y, g:i a" }}</td> 
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>No activities found.</p>
+{% endif %}
+{% endblock %}

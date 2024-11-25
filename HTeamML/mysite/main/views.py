@@ -6,7 +6,7 @@ from django.contrib import messages
 from django.urls import reverse
 
 from .forms import UserProfileForm, CampaignForm, RewardForm
-from .models import User, Campaign, CampaignCompletionInfo, Reward
+from .models import User, Campaign, CampaignCompletionInfo, Reward, RewardRedeemInfo
 
 
 @login_required 
@@ -170,4 +170,38 @@ def reward_create_view(request):
     return render(request, 'rewards_create.html', {
         'form': form,
         'user': request.user
+    })
+    
+    
+    
+    
+    
+    
+@login_required
+def redeem_reward(request, reward_id):
+    reward = get_object_or_404(Reward, id=reward_id)
+
+    user = get_user(request)
+
+    if reward not in user.redeemed_rewards.all():
+        user.redeemed_rewards.add(reward)
+        user.update_points()
+        user.save()
+        
+        RewardRedeemInfo.objects.create(user=user, reward=reward)
+        
+        return redirect('rewards_list')
+    else:
+        messages.info(request, f"Error: Reward '{reward.name}' is already redeemed.")
+        
+        
+@login_required
+def actions_view(request):
+    user = get_object_or_404(User, email=request.user.email)
+    
+    activities = user.activity_list()
+    
+    return render(request, 'actions.html', {
+        'user': user,
+        'activities': activities,
     })

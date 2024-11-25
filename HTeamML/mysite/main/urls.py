@@ -7,7 +7,6 @@ urlpatterns = [
   path('admin/', admin.site.urls),
   path("", views.home_view, name="home"),
   path("logout/", views.logout_view, name="logout"),
-  path('actions/', views.actions_view, name='actions'), 
   path('profile/', views.profile_view, name='profile'),
   path('profile_create/', views.profile_create_view, name='profile_create'),
   path('check/', views.check, name='check'),
@@ -19,4 +18,7 @@ urlpatterns = [
   path('supervisor_alert/', views.supervisor_alert, name='supervisor_alert'),
   path('rewards_list/', views.reward_list_view, name='rewards_list'),
   path('rewards_create/', views.reward_create_view, name='rewards_create'),
+  path('reward/<int:reward_id>/redeem/', views.redeem_reward, name='reward_redeem'),
+  path('actions/', views.actions_view, name='actions'), 
+  
 ]

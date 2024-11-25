@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import User, Campaign, CampaignCompletionInfo, Reward
+from .models import User, Campaign, CampaignCompletionInfo, Reward, RewardRedeemInfo
 
 
 class UserAdmin(admin.ModelAdmin):
@@ -27,6 +27,7 @@ class UserAdmin(admin.ModelAdmin):
         'profile_completed', 
         'supervisor',
         'completed_campaigns',  
+        'redeemed_rewards',
     )
     
     readonly_fields = ('id',)  
@@ -36,6 +37,10 @@ class UserAdmin(admin.ModelAdmin):
     def display_completed_campaigns(self, obj):
         return ", ".join([campaign.name for campaign in obj.completed_campaigns.all()])
     display_completed_campaigns.short_description = 'Completed Campaigns'
+    
+    def display_redeemed_rewards(self, obj):
+        return ", ".join([reward.name for reward in obj.redeemed_rewards.all()])
+    display_redeemed_rewards.short_description = 'Redeemed Rewards'
 
 admin.site.register(User, UserAdmin)
 
@@ -66,3 +71,11 @@ class RewardAdmin(admin.ModelAdmin):
     readonly_fields = ('id',)  
 
 admin.site.register(Reward, RewardAdmin)
+
+
+class RewardRedeemInfoAdmin(admin.ModelAdmin):
+    list_display = ('user', 'reward', 'redeemed_at')
+    list_filter = ('redeemed_at', 'reward')
+    search_fields = ('user__fullname', 'reward__name')
+
+admin.site.register(RewardRedeemInfo, RewardRedeemInfoAdmin)

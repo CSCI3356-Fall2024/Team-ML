@@ -18,12 +18,34 @@ class User(models.Model):
     profile_completed = models.BooleanField(default=False)
     supervisor = models.BooleanField(default=False)
     completed_campaigns = models.ManyToManyField('Campaign', related_name='users', blank=True)
+    redeemed_rewards = models.ManyToManyField('Reward', related_name='users', blank=True)
+
+    
     
     def update_points(self):
-        self.total_points = self.completed_campaigns.aggregate(total=Sum('pointsreward'))['total'] or 0
-        # Temp current_points
-        self.current_points = self.total_points
-
+        total_campaign_points = self.completed_campaigns.aggregate(total=Sum('pointsreward'))['total'] or 0
+        total_redeemed_points = self.redeemed_rewards.aggregate(total=Sum('pointsrequired'))['total'] or 0
+        self.total_points = total_campaign_points
+        self.current_points = total_campaign_points - total_redeemed_points
+        
+        
+    def activity_list(self):
+        campaign_activities = [
+           (completion.campaign.name, completion.campaign.pointsreward, completion.completed_at)
+            for completion in CampaignCompletionInfo.objects.filter(user=self)
+        ]
+    
+        reward_activities = [
+            (redeem.reward.name, -redeem.reward.pointsrequired, redeem.redeemed_at)
+            for redeem in RewardRedeemInfo.objects.filter(user=self)
+        ]
+    
+        activities = campaign_activities + reward_activities
+        return sorted(activities, key=lambda x: x[2])
+            
+        
+        
+            
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
     
@@ -68,7 +90,7 @@ class Reward(models.Model):
     name = models.CharField(max_length=255, blank=False, null=False)
     startdate = models.DateField(blank=False, null=False)
     enddate = models.DateField(blank=False, null=False)
-    pointsrequired = models.PositiveIntegerField(default=0, blank=False, null=False)  # Add this field
+    pointsrequired = models.PositiveIntegerField(default=0, blank=False, null=False)  
     description = models.TextField(blank=False, null=False)
 
     @property
@@ -77,3 +99,24 @@ class Reward(models.Model):
 
     def __str__(self):
         return self.name
+    
+    
+    
+class RewardRedeemInfo(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    reward = models.ForeignKey(Reward, on_delete=models.CASCADE)
+    redeemed_at = models.DateTimeField(auto_now_add=True)  
+    
+    class Meta:
+        unique_together = ('user', 'reward')  
+
+    def __str__(self):
+        return f"{self.user.fullname} - {self.reward.name} completed at {self.redeemed_at}"
+    
+    
+
+            
+
+    
+    
+    
