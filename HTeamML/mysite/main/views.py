@@ -65,6 +65,25 @@ def profile_create_view(request):
     }
     return render(request, "profile_create.html", context)
 
+@login_required
+def profile_edit(request):
+    user = get_object_or_404(User, email=request.user.email)
+
+    if request.method == 'POST':
+        form = UserProfileForm(request.POST, instance=user)
+        
+        if form.is_valid():
+            form.save()
+            return redirect('profile')  
+    else:
+        form = UserProfileForm(instance=user)
+
+    context = {
+        'form': form
+    }
+    return render(request, 'profile_edit.html', context)
+
+
 def check(request):
     google_email = request.user.email
 
