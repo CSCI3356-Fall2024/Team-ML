@@ -3,28 +3,36 @@
 {% block title %}Actions{% endblock %}
 
 {% block content %}
-<h1>{{ user.fullname }}'s Activity List</h1>
+<head>
+    <link rel="stylesheet" href="{% static 'styles/actions.css' %}">
+</head>
 
-{% if activities %}
-    <table>
-        <thead>
-            <tr>
-                <th>Activity Name</th>
-                <th>Points</th>
-                <th>Date</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for activity in activities %}
-            <tr>
-                <td>{{ activity.0 }}</td> 
-                <td>{{ activity.1 }}</td> 
-                <td>{{ activity.2|date:"F j, Y, g:i a" }}</td> 
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-{% else %}
-    <p>No activities found.</p>
-{% endif %}
+<body>
+    <h1 class="title">{{ user.fullname }}'s Activity List</h1>
+
+    {% if activities %}
+        <div class="table-container">
+            <table class="activity-table">
+                <thead>
+                    <tr>
+                        <th>Activity Name</th>
+                        <th>Points</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for activity in activities %}
+                    <tr>
+                        <td>{{ activity.0 }}</td>
+                        <td>{{ activity.1 }}</td>
+                        <td>{{ activity.2|date:"F j, Y, g:i a" }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <p class="no-activities">No activities found.</p>
+    {% endif %}
+</body>
 {% endblock %}
