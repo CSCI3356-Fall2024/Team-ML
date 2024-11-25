@@ -3,7 +3,7 @@ body {
     margin: 0;
     padding: 0;
     background-color: #f8f9fa;
-    color: #333; 
+    color: #333;
     overflow-x: hidden;
 }
 
@@ -37,7 +37,7 @@ body {
 }
 
 .activity-table th {
-    background-color: #343a40; 
+    background-color: #343a40;
     color: white;
     padding: 10px;
     text-transform: uppercase;
@@ -46,41 +46,43 @@ body {
 
 .activity-table td {
     padding: 10px;
-    color: #495057; 
-    border-top: 1px solid #ddd; 
+    border-top: 1px solid #ddd;
 }
 
 .activity-table tr:nth-child(even) {
-    background-color: #f8f9fa; 
+    background-color: #f8f9fa;
 }
 
 .activity-table tr:hover {
-    background-color: #e9ecef; 
-    transform: scale(1.01); 
+    background-color: #e9ecef;
+    transform: scale(1.01);
     transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.activity-table .reward-name {
+    color: #007bff; 
+    font-weight: bold;
+}
+
+.activity-table .campaign-name {
+    color: #6f42c1; 
+    font-weight: bold;
+}
+
+.activity-table .points-added {
+    color: #28a745; 
+    font-weight: bold;
+}
+
+.activity-table .points-deducted {
+    color: #dc3545; 
+    font-weight: bold;
 }
 
 .no-activities {
     text-align: center;
     font-size: 1.25rem;
-    color: #6c757d; 
+    color: #6c757d;
     margin-top: 2rem;
-    font-style: italic; 
-}
-
-button {
-    background-color: #28a745; 
-    color: #ffffff;
-    border: none;
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin: 1rem auto;
-    display: block;
-}
-
-button:hover {
-    background-color: #218838;
+    font-style: italic;
 }

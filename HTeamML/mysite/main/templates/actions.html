@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 
 {% block title %}Actions{% endblock %}
-{% load static %}
 
 {% block content %}
 <head>
@@ -24,8 +23,22 @@
                 <tbody>
                     {% for activity in activities %}
                     <tr>
-                        <td>{{ activity.0 }}</td>
-                        <td>{{ activity.1 }}</td>
+                        <td>
+                            {% if "Reward" in activity.0 %}
+                                <span class="reward-name">{{ activity.0 }}</span>
+                            {% elif "Campaign" in activity.0 %}
+                                <span class="campaign-name">{{ activity.0 }}</span>
+                            {% else %}
+                                {{ activity.0 }}
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if activity.1 < 0 %}
+                                <span class="points-deducted">{{ activity.1 }}</span>
+                            {% else %}
+                                <span class="points-added">{{ activity.1 }}</span>
+                            {% endif %}
+                        </td>
                         <td>{{ activity.2|date:"F j, Y, g:i a" }}</td>
                     </tr>
                     {% endfor %}
