@@ -26,19 +26,19 @@
                     {% for activity in activities %}
                     <tr>
                         <td>
-                            {% if "Reward" in activity.0 %}
+                            {% if "Reward" in activity.0|lower %}
                                 <span class="reward-name">{{ activity.0 }}</span>
                             {% elif "Campaign" in activity.0 %}
                                 <span class="campaign-name">{{ activity.0 }}</span>
                             {% else %}
-                                {{ activity.0 }}
+                                <span>{{ activity.0 }}</span>
                             {% endif %}
                         </td>
                         <td>
                             {% if activity.1 < 0 %}
                                 <span class="points-deducted">{{ activity.1 }}</span>
                             {% else %}
-                                <span class="points-added">{{ activity.1 }}</span>
+                                <span class="points-added">+{{ activity.1 }}</span>
                             {% endif %}
                         </td>
                         <td>{{ activity.2|date:"F j, Y, g:i a" }}</td>
