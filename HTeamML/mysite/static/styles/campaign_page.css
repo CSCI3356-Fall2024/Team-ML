@@ -144,3 +144,13 @@ button:hover {
     color: darkslategray;       
     text-decoration: none;  
 }
+
+.current-points {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #28a745;
+    font-weight: bold;
+    margin-top: -5px;
+    margin-bottom: 20px;
+    margin-left: 1rem;
+}
