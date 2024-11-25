@@ -94,23 +94,54 @@ img.avatar {
     margin-bottom: 30px;
     margin-right: 50px;
 }
+.qr-code-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;  
+    align-items: center;     
+    width: 40%;
+}
 
 .qr-code-section .edit-button {
-    background-color: #00FF49;
-    color: black;
-    padding: 10px 20px;
-    font-size: 20px;
+    background-color: #28a745;  /* Darker green for the edit button */
+    color: white;               /* Ensure text is visible */
+    padding: 12px 24px;
+    font-size: 16px;
     border: none;
-    border-radius: 10px;
+    border-radius: 8px;
     cursor: pointer;
+    margin-top: 15px;
     margin-bottom: 15px;
-    margin-top: 50px;
-    width: 100px;
-    height: 50px;
+    width: 120px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+    text-decoration: none;
 }
 
 .qr-code-section .edit-button:hover {
-    background-color: #218c64;
+    background-color: #1b6b4b; /* Even darker green on hover */
+}
+
+/* Logout button styling */
+.qr-code-section .logout-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #FF4C4C; 
+    color: white; 
+    text-decoration: none; 
+    border: none; 
+    border-radius: 10px; 
+    font-size: 16px;
+    margin-bottom: 15px;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+.qr-code-section .logout-button:hover {
+    background-color: #FF1A1A;
+    border-color: #FF4C4C;
+    transform: scale(1.05);
 }
 
 @media screen and (max-width: 768px) {
