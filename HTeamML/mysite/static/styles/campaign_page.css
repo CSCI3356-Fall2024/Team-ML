@@ -145,12 +145,32 @@ button:hover {
     text-decoration: none;  
 }
 
-.current-points {
-    text-align: center;
-    font-size: 1.2rem;
-    color: #28a745;
-    font-weight: bold;
-    margin-top: -5px;
-    margin-bottom: 20px;
-    margin-left: 1rem;
+.title-container {
+    display: flex;
+    align-items: center; /* Aligns items vertically */
+    justify-content: space-between; /* Adds space between title and points */
+    padding: 0 1rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #ddd;
+    height: 50px; /* Explicit height to prevent alignment issues */
 }
+
+.title-container > h1, .title-container > p {
+    margin: 0;
+    padding: 0;
+    line-height: 50px; /* Matches the container height */
+}
+
+.title {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.current-points {
+    font-size: 1.0rem;
+    font-weight: bold;
+    color: #28a745;
+    text-align: right;
+    margin-left: 1rem
+}
+
