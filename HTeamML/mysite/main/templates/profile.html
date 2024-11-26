@@ -15,49 +15,54 @@
 <body>
 
     <div class="container">
-    
-        <!-- Left Section - Avatar, Name, Email, and Profile Fields -->
         <div class="profile-content">
-            <div class="profile-header">
-                <img class="avatar" src="{% static 'images/Default_Avatar.png' %}" alt="Avatar">
-                <div class="user-details">
-                    <h2>{{ user.fullname }}</h2>
-                    <p>{{ user.email }}</p>
+            <!-- Left Column -->
+            <div class="left-column">
+                <div class="profile-header">
+                    <img class="avatar" src="{% static 'images/Default_Avatar.png' %}" alt="Avatar">
+                    <div class="user-details">
+                        <h2>{{ user.fullname }}</h2>
+                        <p>{{ user.email }}</p>
+                    </div>
+                </div>
+    
+                <div class="profile-fields">
+                    <label>Full Name:</label>
+                    <p>{{ user.fullname }}</p>
+    
+                    <label>School:</label>
+                    <p>{{ user.school }}</p>
+    
+                    <label>Major(s):</label>
+                    <p>{{ user.major }}</p>
+    
+                    <label>Minor(s):</label>
+                    <p>{{ user.minor }}</p>
+    
+                    <label>Graduation Year:</label>
+                    <p>{{ user.gradyear }}</p>
+    
+                    <label>Is Supervisor:</label>
+                    <p>{{ user.supervisor|yesno:"Yes,No" }}</p>
                 </div>
             </div>
-
-            <div class="profile-fields">
-                <label>Full Name:</label>
-                <p>{{ user.fullname }}</p>
-
-                <label>School:</label>
-                <p>{{ user.school }}</p>
-
-                <label>Major(s):</label>
-                <p>{{ user.major }}</p>
-
-                <label>Minor(s):</label>
-                <p>{{ user.minor }}</p>
-
-                <label>Graduation Year:</label>
-                <p>{{ user.gradyear }}</p>
-
-                <label>Is Supervisor:</label>
-                <p>{{ user.supervisor|yesno:"Yes,No" }}</p>
+    
+            <!-- Right Column -->
+            <div class="right-column">
+                <div class="profile-fields">
+                    <label>Current Points:</label>
+                    <p>{{ user.current_points }}</p>
+    
+                    <label>Total Points:</label>
+                    <p>{{ user.total_points }}</p>
+                </div>
+    
+                <div class="action-buttons">
+                    <a href="{% url 'profile_edit' %}" class="edit-button">Edit</a>
+                    <a href="{% url 'logout' %}" class="logout-button">Logout</a>
+                </div>
             </div>
         </div>
-
-        <!-- Right Section - QR Code and Edit Button -->
-        <div class="qr-code-section">
-            <div class="logout-section">
-                <a href="{% url 'logout' %}" class="logout-button">Logout</a>
-            </div>
-            <a href="{% url 'profile_edit' %}" class="edit-button">Edit</a>
-            
-            
-        </div>
-
-        
     </div>
 
 </body>
