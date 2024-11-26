@@ -13,17 +13,24 @@
 <body>
 
     <h1 class="title">Rewards List</h1>
+
+
+    {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+            <p class="messages {{ message.tags }}">{{ message }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+
+
+
     {% if user and not user.supervisor%}
         <h2 class="current-points">Current Points: {{ user.current_points }}</h2>
     {% endif %}
 
-    {% if messages %}
-    <div>
-        {% for message in messages %}
-            <p>{{ message }}</p>
-        {% endfor %}
-    </div>
-    {% endif %}
+
 
     {% if user and user.supervisor %}
         <a href="{% url 'rewards_create' %}" class="create-campaign-btn">Add Reward</a>

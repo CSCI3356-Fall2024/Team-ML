@@ -138,10 +138,10 @@ def complete_campaign(request, campaign_id):
         user.save()
         
         CampaignCompletionInfo.objects.create(user=user, campaign=campaign)
-        
+        messages.success(request, f"Successfully Completed {campaign.name} ")
         return redirect('campaign_list')
     else:
-        messages.info(request, f"Error: Campaign '{campaign.name}' is already completed.")
+        messages.error(request, f"Error: Campaign '{campaign.name}' is already completed.")
 
 @login_required
 def campaign_detail(request, campaign_id):
@@ -205,6 +205,11 @@ def redeem_reward(request, reward_id):
     reward = get_object_or_404(Reward, id=reward_id)
 
     user = get_user(request)
+    user.update_points()
+    
+    if user.current_points < reward.pointsrequired:
+        messages.warning(request, "Not enough Points!")
+        return redirect('rewards_list') 
 
     if reward not in user.redeemed_rewards.all():
         user.redeemed_rewards.add(reward)
@@ -212,10 +217,10 @@ def redeem_reward(request, reward_id):
         user.save()
         
         RewardRedeemInfo.objects.create(user=user, reward=reward)
-        
+        messages.success(request, f"Successfully Redeemed {reward.name}!")
         return redirect('rewards_list')
     else:
-        messages.info(request, f"Error: Reward '{reward.name}' is already redeemed.")
+        messages.error(request, f"Error: Reward '{reward.name}' is already redeemed.")
         
         
 @login_required

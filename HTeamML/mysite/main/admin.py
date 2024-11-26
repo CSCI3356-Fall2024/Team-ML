@@ -32,7 +32,7 @@ class UserAdmin(admin.ModelAdmin):
     
     readonly_fields = ('id',)  
     
-    filter_horizontal = ('completed_campaigns',)  
+    filter_horizontal = ('completed_campaigns', 'redeemed_rewards')  
 
     def display_completed_campaigns(self, obj):
         return ", ".join([campaign.name for campaign in obj.completed_campaigns.all()])
