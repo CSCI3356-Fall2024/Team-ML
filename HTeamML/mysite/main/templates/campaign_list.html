@@ -25,6 +25,9 @@
 {% endif %}
 
 
+    {% if user and not user.supervisor%}
+        <h2 class="current-points">Current Points: {{ user.current_points }}</h2>
+    {% endif %}
 
 
     {% if user and user.supervisor %}
