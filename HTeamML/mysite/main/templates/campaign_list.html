@@ -26,7 +26,7 @@
 
 
     {% if user and not user.supervisor%}
-        <h2 class="current-points">Current Points: {{ user.current_points }}</h2>
+        <a href="{% url 'actions' %}" class="create-campaign-btn">Points: {{ user.current_points }}</a>
     {% endif %}
 
 
