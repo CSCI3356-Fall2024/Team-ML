@@ -3,6 +3,10 @@ from django.utils import timezone
 from django.db.models import Sum
 from django.conf import settings
 
+
+
+
+
 class User(models.Model):
     gradYearOptions = [(2025, "2025"), (2026, "2026"), (2027, "2027"), (2028, "2028"),]
 
@@ -17,6 +21,7 @@ class User(models.Model):
     total_points = models.PositiveIntegerField(default=0, null=False)
     profile_completed = models.BooleanField(default=False)
     supervisor = models.BooleanField(default=False)
+    profile_picture = models.ImageField(upload_to='profile_pictures/', default='default_avatar.png')
     completed_campaigns = models.ManyToManyField('Campaign', related_name='users', blank=True)
     redeemed_rewards = models.ManyToManyField('Reward', related_name='users', blank=True)
 

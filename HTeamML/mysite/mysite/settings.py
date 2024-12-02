@@ -157,3 +157,6 @@ STATICFILES_DIRS = [
 
 TIME_ZONE = 'America/New_York'  
 USE_TZ = True
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'

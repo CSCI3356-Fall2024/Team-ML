@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from django.contrib import messages
 from django.urls import reverse
+from django.core.files.storage import default_storage
 
 from .forms import UserProfileForm, CampaignForm, RewardForm
 from .models import User, Campaign, CampaignCompletionInfo, Reward, RewardRedeemInfo
@@ -37,6 +38,20 @@ def actions_view(request):
 def rewards_view(request):
   return render(request, 'rewards.html')
 
+@login_required
+def upload_profile_picture(request):
+    user = get_object_or_404(User, email=request.user.email)
+    
+    if request.method == 'POST' and request.FILES.get('profile_picture'):
+        profile_picture = request.FILES['profile_picture']
+        user.profile_picture = profile_picture
+        user.save()
+        messages.success(request, "Profile picture updated successfully!")
+        return redirect('profile')
+    else:
+        messages.error(request, "Please select a valid image file.")
+        return redirect('profile')
+    
 
 def profile_view(request):
   user = get_object_or_404(User, email=request.user.email)
