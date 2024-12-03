@@ -19,20 +19,14 @@
             <!-- Left Column -->
             <div class="left-column">
                 <div class="profile-header">
-                    <img class="avatar" src="{{ user.profile_picture.url }}" alt="Avatar">
+                    <img id="avatar" class="avatar" src="{{ user.profile_picture.url }}" alt="Avatar">
                     <div class="user-details">
                         <h2>{{ user.fullname }}</h2>
                         <p>{{ user.email }}</p>
                     </div>
                 </div>
 
-                <form method="post" enctype="multipart/form-data" action="{% url 'profile_picture_upload' %}">
-                    {% csrf_token %}
-                    <label for="profile_picture">Upload New Profile Picture:</label>
-                    <input type="file" id="profile_picture" name="profile_picture" accept="image/*">
-                    <button type="submit" class="upload-button">Upload</button>
-                </form>
-    
+
                 <div class="profile-fields">
                     <label>Full Name:</label>
                     <p>{{ user.fullname }}</p>
@@ -56,6 +50,15 @@
     
             <!-- Right Column -->
             <div class="right-column">
+                <div id="popup-form" class="popup hidden">
+                    <form method="post" enctype="multipart/form-data" action="{% url 'profile_picture_upload' %}">
+                        {% csrf_token %}
+                        <label for="profile_picture">Upload New Profile Picture:</label>
+                        <input type="file" id="profile_picture" name="profile_picture" accept="image/*">
+                        <button type="submit" class="upload-button">Upload</button>
+                    </form>
+                </div>
+    
                 <div class="profile-fields">
                     <label>Current Points:</label>
                     <p>{{ user.current_points }}</p>
@@ -71,6 +74,29 @@
             </div>
         </div>
     </div>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const avatar = document.getElementById("avatar");
+            const popupForm = document.getElementById("popup-form");
+
+            avatar.addEventListener("click", (event) => {
+                // Position the popup at the mouse cursor
+                popupForm.style.left = `${event.pageX}px`;
+                popupForm.style.top = `${event.pageY}px`;
+                popupForm.classList.toggle("hidden");
+            });
+
+            // Close the popup when clicking outside of it
+            document.addEventListener("click", (event) => {
+                if (!popupForm.contains(event.target) && event.target !== avatar) {
+                    popupForm.classList.add("hidden");
+                }
+            });
+        });
+    </script>
+
 
 </body>
 

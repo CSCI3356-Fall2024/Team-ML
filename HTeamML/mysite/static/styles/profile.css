@@ -33,12 +33,12 @@ body {
     flex: 1;
 }
 .right-column {
-    margin-top: 120px;
+    margin-top: 140px;
 }
 
 /* Align Current Points with Full Name */
 .right-column .profile-fields:first-of-type {
-    margin-top: 20px; /* Match the top margin of the Full Name field */
+    margin-top: 15px; /* Match the top margin of the Full Name field */
 }
 
 /* Profile Header Section */
@@ -169,6 +169,57 @@ form button.upload-button {
     transform: scale(1.05);
 }
 
+
+/* Hidden by default */
+.hidden {
+    display: none;
+}
+
+/* Popup styling */
+.popup {
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 15px;
+    z-index: 1000;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Styling the form elements */
+.popup form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.popup input[type="file"] {
+    border: 1px solid #ccc;
+    padding: 5px;
+}
+
+.popup .upload-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.popup .upload-button:hover {
+    background-color: #45a049;
+}
+
+.avatar {
+    transition: transform 0.3s ease; 
+    cursor: pointer; 
+}
+
+.avatar:hover {
+    transform: scale(1.05); 
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); 
+}
 
 /* Responsive Design for Small Screens */
 @media screen and (max-width: 768px) {
