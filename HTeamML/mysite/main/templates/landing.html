@@ -18,7 +18,7 @@
         
         {% for user in top_users %}
         <div class="leaderboard-item">
-            <img src="{% static 'images/Default_Avatar.png' %}">
+            <img id="avatar" class="avatar" src="{{ user.profile_picture.url }}">
             <div class="leaderboard-details">
                 <p><strong>{{ user.fullname }}</strong></p>
                 <p>{{ user.school }}</p>

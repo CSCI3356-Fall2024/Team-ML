@@ -21,7 +21,7 @@ class User(models.Model):
     total_points = models.PositiveIntegerField(default=0, null=False)
     profile_completed = models.BooleanField(default=False)
     supervisor = models.BooleanField(default=False)
-    profile_picture = models.ImageField(upload_to='profile_pictures/', default='default_avatar.png')
+    profile_picture = models.ImageField(upload_to='profile_pictures/', blank=True, null=True, default = 'default_avatar.png')
     completed_campaigns = models.ManyToManyField('Campaign', related_name='users', blank=True)
     redeemed_rewards = models.ManyToManyField('Reward', related_name='users', blank=True)
 
