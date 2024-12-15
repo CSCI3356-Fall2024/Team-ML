@@ -38,29 +38,44 @@
             <h2>Active Rewards</h2>
             {% if active_rewards %}
                 <ul>
-                    {% for reward in active_rewards %}
+    {% for reward_info in active_rewards %}
+    <div class="campaign-item">
+        <div class="campaign-title">
+            {{ reward_info.reward.name }}
+        </div>
+        <div class="campaign-dates">
+            {{ reward_info.reward.startdate }} - {{ reward_info.reward.enddate }}
+        </div>
+        <div class="campaign-points">
+            Points Required: {{ reward_info.reward.pointsrequired }}
+        </div>
+        <div class="campaign-description">
+            Description: {{ reward_info.reward.description }}
+        </div>
+        <div class="remaining">
+            Total Remaining Amount: {{ reward_info.remaining_amount }}
+        </div>
+        <div class="user-remaining">
+            Your Remaining Amount: {{ reward_info.user_remaining_amount }}
+        </div>
 
-                            <div class="campaign-item">
-                                <div class="campaign-title">
-                                    {{ reward.name }}
-                                </div>
-                                <div class="campaign-dates">{{ reward.startdate }} - {{ reward.enddate }}</div>
-                                <div class="campaign-points">Points Required: {{ reward.pointsrequired }}</div>
-                                <div class="campaign-description">Description: {{ reward.description }}</div>
-                                
-                                {% if not user.supervisor %}
-                                    {% if reward not in user.redeemed_rewards.all %}
-                                        <form method="post" action="{% url 'reward_redeem' reward.id %}">
-                                            {% csrf_token %}
-                                            <button type="submit">Redeem</button>
-                                        </form>
-                                    {% else %}
-                                        <p>Redeemed</p>
-                                    {% endif %}
-                                {% endif %}
-                            </div> 
-
-                    {% endfor %}
+        
+        {% if not user.supervisor %}
+            {% if reward_info.reward.expired == False and reward_info.redemption_count < reward_info.reward.userredeemlimit %}
+                <form method="post" action="{% url 'reward_redeem' reward_info.reward.id %}">
+                    {% csrf_token %}
+                    <button type="submit">Redeem</button>
+                </form>
+            {% elif reward_info.redemption_count >= reward_info.reward.userredeemlimit %}
+                <p>Your redeem limit reached</p>
+            {% elif reward_info.reward.redeemedamount >= reward_info.reward.totalamount %}
+                <p>None remaining</p>
+            {% elif reward_info.reward.expired == True %}
+                <p>Expired</p>
+            {% endif %}
+        {% endif %}
+    </div>
+    {% endfor %}
                 </ul>
             {% else %}
                 <p>No active rewards.</p>
@@ -81,8 +96,14 @@
                             <div class="campaign-item">
                                 <div class="campaign-title">{{reward.name}}</div>
                                 <div class="campaign-dates">{{reward.startdate}} - {{reward.enddate}}</div>
-                                <div class="campaign-points">{{reward.pointsrequiredeward}} Points</div>
+                                <div class="campaign-points">Points Required: {{ reward.pointsrequired }}</div>
                                 <div class="campaign-description">Description: {{reward.description}}</div>
+                                {% if reward.redeemedamount >= reward.totalamount %}
+                                    <p>None remaining</p>
+                                {% else %}
+                                    <p>Still some remaining but expired</p>
+                                {% endif %}
+
                             </div>
                     {% endfor %}
                 </ul>

@@ -177,17 +177,34 @@ def landing_view(request):
 
 @login_required
 def reward_list_view(request):
-    current_date = timezone.now().date()
+    user = get_user(request) 
     
-    user = get_user(request)
-   
-    active_rewards = Reward.objects.filter(enddate__gte=current_date)
-    expired_rewards = Reward.objects.filter(enddate__lt=current_date)
+    active_rewards = Reward.objects.filter(expired=False)
+    expired_rewards = Reward.objects.filter(expired=True)
+
+    reward_redemption_counts = {}
+
+    reward_data = []
+    for reward in active_rewards:
+        reward.update_reward()
+        redemption_count = RewardRedeemInfo.objects.filter(user=user, reward=reward).count()
+        reward_redemption_counts[reward.id] = redemption_count
+        
+        remaining_amount = reward.totalamount - reward.redeemedamount
+        user_remaining_amount = reward.userredeemlimit - redemption_count
+        
+        reward_data.append({
+            'reward': reward,
+            'remaining_amount': remaining_amount,
+            'redemption_count': redemption_count,
+            'user_remaining_amount': user_remaining_amount
+        })
 
     return render(request, 'rewards.html', {
-      'user': user, 
-      'active_rewards': active_rewards,
-      'expired_rewards': expired_rewards,
+        'user': user, 
+        'active_rewards': reward_data,
+        'expired_rewards': expired_rewards,
+        'reward_redemption_counts': reward_redemption_counts,
     })
 
 
@@ -226,16 +243,19 @@ def redeem_reward(request, reward_id):
         messages.warning(request, "Not enough Points!")
         return redirect('rewards_list') 
 
-    if reward not in user.redeemed_rewards.all():
-        user.redeemed_rewards.add(reward)
+    user_redeemed_amount = RewardRedeemInfo.objects.filter(user=user, reward=reward).count()
+    total_redeemed_amount = RewardRedeemInfo.objects.filter(reward=reward).count()
+    
+    if user_redeemed_amount < reward.userredeemlimit and total_redeemed_amount < reward.totalamount:
+        RewardRedeemInfo.objects.create(user=user, reward=reward)
+        reward.update_reward()
         user.update_points()
         user.save()
-        
-        RewardRedeemInfo.objects.create(user=user, reward=reward)
         messages.success(request, f"Successfully Redeemed {reward.name}!")
         return redirect('rewards_list')
     else:
         messages.error(request, f"Error: Reward '{reward.name}' is already redeemed.")
+        return redirect('rewards_list')
         
         
 @login_required

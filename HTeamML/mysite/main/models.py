@@ -29,9 +29,16 @@ class User(models.Model):
     
     def update_points(self):
         total_campaign_points = self.completed_campaigns.aggregate(total=Sum('pointsreward'))['total'] or 0
-        total_redeemed_points = self.redeemed_rewards.aggregate(total=Sum('pointsrequired'))['total'] or 0
+        
+        total_redeemed_points = RewardRedeemInfo.objects.filter(user=self) \
+            .values('reward') \
+            .annotate(total_redeemed=Sum('reward__pointsrequired')) \
+            .aggregate(total=Sum('total_redeemed'))['total'] or 0
+        
         self.total_points = total_campaign_points
         self.current_points = total_campaign_points - total_redeemed_points
+        
+        self.save()
         
         
     def activity_list(self):
@@ -97,10 +104,20 @@ class Reward(models.Model):
     enddate = models.DateField(blank=False, null=False)
     pointsrequired = models.PositiveIntegerField(default=0, blank=False, null=False)  
     description = models.TextField(blank=False, null=False)
+    totalamount = models.IntegerField(blank=False, null=False, default=1)
+    userredeemlimit = models.IntegerField(blank=False,null=False, default=1)
+    redeemedamount = models.IntegerField(default=0)
+    expired = models.BooleanField(default=False)
 
-    @property
-    def expired(self):
-        return timezone.now().date() > self.enddate
+
+    def update_reward(self):
+        self.redeemedamount = RewardRedeemInfo.objects.filter(reward=self).count()
+        if self.redeemedamount >= self.totalamount:
+            self.expired = True
+        if timezone.now().date() > self.enddate:
+            self.expired = True
+        self.save()
+        
 
     def __str__(self):
         return self.name
@@ -113,7 +130,7 @@ class RewardRedeemInfo(models.Model):
     redeemed_at = models.DateTimeField(auto_now_add=True)  
     
     class Meta:
-        unique_together = ('user', 'reward')  
+        unique_together = ('user', 'reward', 'redeemed_at')  
 
     def __str__(self):
         return f"{self.user.fullname} - {self.reward.name} completed at {self.redeemed_at}"

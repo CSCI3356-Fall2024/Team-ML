@@ -64,11 +64,11 @@ admin.site.register(CampaignCompletionInfo, CampaignCompletionInfoAdmin)
 
 
 class RewardAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'startdate', 'enddate', 'pointsrequired')
+    list_display = ('id', 'name', 'startdate', 'enddate', 'pointsrequired', 'totalamount', 'userredeemlimit', 'redeemedamount', 'expired')
     
-    fields = ('id', 'name', 'startdate', 'enddate', 'pointsrequired', 'description')
+    fields = ('id', 'name', 'startdate', 'enddate', 'pointsrequired', 'description', 'totalamount', 'userredeemlimit', 'redeemedamount', 'expired')
 
-    readonly_fields = ('id',)  
+    readonly_fields = ('id', 'expired')  
 
 admin.site.register(Reward, RewardAdmin)
 
