@@ -76,7 +76,7 @@ class CampaignForm(forms.ModelForm):
 class RewardForm(forms.ModelForm):
     class Meta:
         model = Reward
-        fields = ['name', 'startdate', 'enddate', 'pointsrequired', 'description', 'totalamount', 'userredeemlimit']
+        fields = ['name', 'startdate', 'enddate', 'pointsrequired', 'description', 'totalamount', 'userredeemlimit', 'image']
         labels = {
             'name': 'Reward Name',
             'startdate': 'Start Date',
@@ -85,6 +85,7 @@ class RewardForm(forms.ModelForm):
             'description': 'Description',
             'totalamount': 'Total redeem amount limit for all users',
             'userredeemlimit': 'Redeem amount limit for each user',
+            'image': 'Reward Image',
         }
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control'}),
@@ -94,6 +95,7 @@ class RewardForm(forms.ModelForm):
             'description': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
             'totalamount': forms.NumberInput(attrs={'class': 'form-control'}),
             'userredeemlimit': forms.NumberInput(attrs={'class': 'form-control'}),
+            'image': forms.ClearableFileInput(attrs={'class': 'form-control'}),
         }
 
     def clean(self):

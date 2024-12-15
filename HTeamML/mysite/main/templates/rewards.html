@@ -52,6 +52,11 @@
         <div class="campaign-description">
             Description: {{ reward_info.reward.description }}
         </div>
+        {% if reward_info.reward.image %}
+            <div class="reward-image">
+                <img src="{{ reward_info.reward.image.url }}" alt="{{ reward_info.reward.name }}">
+            </div>
+        {% endif %}
         <div class="remaining">
             Total Remaining Amount: {{ reward_info.remaining_amount }}
         </div>
@@ -98,6 +103,12 @@
                                 <div class="campaign-dates">{{reward.startdate}} - {{reward.enddate}}</div>
                                 <div class="campaign-points">Points Required: {{ reward.pointsrequired }}</div>
                                 <div class="campaign-description">Description: {{reward.description}}</div>
+
+                                {% if reward.image %}
+                                    <div class="reward-image">
+                                        <img src="{{ reward.image.url }}" alt="{{ reward.name }}">
+                                    </div>
+                                {% endif %}
                                 {% if reward.redeemedamount >= reward.totalamount %}
                                     <p>None remaining</p>
                                 {% else %}

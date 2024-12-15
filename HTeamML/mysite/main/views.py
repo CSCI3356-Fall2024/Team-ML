@@ -215,7 +215,7 @@ def reward_create_view(request):
     
   user = get_user(request)
   if request.method == 'POST':
-      form = RewardForm(request.POST)
+      form = RewardForm(request.POST, request.FILES)
       if form.is_valid():
           form.save()
           return redirect('rewards_list')

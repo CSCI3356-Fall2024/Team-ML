@@ -35,7 +35,7 @@
     </div>
     <div class="create-profile-form">
         {% block content %}
-        <form method="POST">
+        <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <div class = "left">
                 <label for="name">New Reward Name</label>
@@ -49,6 +49,9 @@
 
                 <label for="pointsrequired">Points Needed</label>
                 {{ form.pointsrequired }}
+
+                <label for="image">Reward Image</label>
+                {{ form.image }}
             </div>
 
             <div class = "right">

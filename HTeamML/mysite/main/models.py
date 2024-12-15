@@ -108,6 +108,7 @@ class Reward(models.Model):
     userredeemlimit = models.IntegerField(blank=False,null=False, default=1)
     redeemedamount = models.IntegerField(default=0)
     expired = models.BooleanField(default=False)
+    image = models.ImageField(upload_to='reward_images/', blank=True, null=True)
 
 
     def update_reward(self):
