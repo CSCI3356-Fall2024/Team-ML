@@ -15,7 +15,7 @@
     <div class="title-container">
         <h1 class="title">Rewards List</h1>
         {% if user and not user.supervisor %}
-            <a href="{% url 'actions' %}" class="create-campaign-btn">Points: {{ user.current_points }}</a>
+            <a href="{% url 'actions' %}" class="create-campaign-btn" style="margin: 20px;">Points: {{ user.current_points }}</a>
         {% endif %}
     </div>
 

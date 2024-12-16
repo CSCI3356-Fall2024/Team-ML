@@ -127,7 +127,7 @@ button:hover {
     text-decoration: none; 
     margin-bottom: 1rem;
     transition: background-color 0.3s ease, transform 0.2s ease;
-    margin-left: 1rem
+    margin-left: 1rem;
 }
 
 .create-campaign-btn:hover {

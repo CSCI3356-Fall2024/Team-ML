@@ -10,33 +10,75 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile Create Page</title>
     <style>
+        /* Main container to center the form */
         .create_profile_form {
             display: flex;
-            justify-content: center; 
-            margin-top: 50px; 
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f7f7f7;  /* Light background color */
         }
 
+        /* Form box styling */
         .form-box {
-            width: 400px;
-            padding: 20px;
-           
-            border-radius: 10px; 
-            
+            width: 100%;
+            max-width: 450px;  /* Max width to avoid stretching on large screens */
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
-        .form-box input[type='submit'] {
+        /* Form title */
+        h2 {
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        input[type="text"], input[type="email"], input[type="number"], select, textarea {
             width: 100%;
             padding: 10px;
-            background-color: #00FF49;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        label {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            background-color: #28a745;
             border: none;
             border-radius: 5px;
             font-size: 16px;
             cursor: pointer;
-            color: black;
+            color: white;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #218838;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 14px;
+            margin-top: -10px;
+            margin-bottom: 15px;
         }
     </style>
 </head>
-
 
 <body>
     <div class="create_profile_form">
