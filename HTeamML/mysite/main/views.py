@@ -52,7 +52,7 @@ def upload_profile_picture(request):
         messages.error(request, "Please select a valid image file.")
         return redirect('profile')
     
-
+@login_required 
 def profile_view(request):
   user = get_object_or_404(User, email=request.user.email)
   context = {
@@ -60,6 +60,7 @@ def profile_view(request):
   }
   return render(request, 'profile.html', context)
 
+@login_required 
 def profile_create_view(request):
   email = request.user.email
 
@@ -122,6 +123,7 @@ def campaign_list_view(request):
     'active_campaigns': active_campaigns
   })
 
+@login_required 
 def create_campaign(request):
     if supervisor_check(request):
       return supervisor_check(request)
