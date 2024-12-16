@@ -6,8 +6,8 @@ from django.contrib import messages
 from django.urls import reverse
 from django.core.files.storage import default_storage
 
-from .forms import UserProfileForm, CampaignForm, RewardForm
-from .models import User, Campaign, CampaignCompletionInfo, Reward, RewardRedeemInfo
+from .forms import UserProfileForm, CampaignForm, RewardForm, NewsItemForm
+from .models import User, Campaign, CampaignCompletionInfo, Reward, RewardRedeemInfo, NewsItem
 
 
 @login_required 
@@ -174,8 +174,8 @@ def campaign_detail(request, campaign_id):
 
 def landing_view(request):
     top_users = User.objects.order_by('-total_points')[:5]
-    
-    return render(request, 'landing.html', {'top_users': top_users})
+    latest_news = NewsItem.objects.latest('created_at')
+    return render(request, 'landing.html', {'top_users': top_users, 'latest_news': latest_news})
 
 @login_required
 def reward_list_view(request):
@@ -270,3 +270,14 @@ def actions_view(request):
         'user': user,
         'activities': activities,
     })
+
+@login_required
+def news_create(request):
+    if request.method == 'POST':
+        form = NewsItemForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('landing')
+    else:
+        form = NewsItemForm()
+    return render(request, 'news_create.html', {'form': form})

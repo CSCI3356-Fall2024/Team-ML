@@ -21,5 +21,6 @@ urlpatterns = [
   path('rewards_create/', views.reward_create_view, name='rewards_create'),
   path('reward/<int:reward_id>/redeem/', views.redeem_reward, name='reward_redeem'),
   path('actions/', views.actions_view, name='actions'), 
-  path('profile/upload_picture/', views.upload_profile_picture, name='profile_picture_upload')
+  path('profile/upload_picture/', views.upload_profile_picture, name='profile_picture_upload'),
+  path('news_create/', views.news_create, name='news_create')
 ]

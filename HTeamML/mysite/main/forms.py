@@ -1,5 +1,5 @@
 from django import forms
-from .models import User, Campaign, Reward
+from .models import User, Campaign, Reward, NewsItem
 from django.core.exceptions import ValidationError
 from django.utils import timezone
 
@@ -106,4 +106,13 @@ class RewardForm(forms.ModelForm):
         if enddate and startdate and enddate <= startdate:
             raise ValidationError("End date must be after the start date.")
         return cleaned_data
+
+class NewsItemForm(forms.ModelForm):
+    class Meta:
+        model = NewsItem
+        fields = ['headline', 'photo', 'body']
+        widgets = {
+            'headline': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter headline'}),
+            'body': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Enter news body', 'rows': 5}),
+        }
         

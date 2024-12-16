@@ -135,7 +135,15 @@ class RewardRedeemInfo(models.Model):
 
     def __str__(self):
         return f"{self.user.fullname} - {self.reward.name} completed at {self.redeemed_at}"
-    
+
+class NewsItem(models.Model):
+    headline = models.CharField(max_length=255)
+    photo = models.ImageField(upload_to='news_photos/')
+    body = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.headline    
     
 
             

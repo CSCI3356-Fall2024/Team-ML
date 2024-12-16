@@ -1,67 +1,92 @@
 .landing-container {
-  display: flex;
-  gap: 20px;
-  padding: 20px;
-  width: 100%;
-  margin: 0 auto;
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    width: 100%;
+    margin: 0 auto;
+  }
+  
+  .leaderboard-section {
+    background-color: #f5f0d7;
+    padding: 20px;
+    width: 30%;
+    border-radius: 8px;
+  }
+  
+  .leaderboard-section h2 {
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .leaderboard-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  
+  .leaderboard-item img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  .leaderboard-details {
+    flex: 1;
+  }
+  
+  .leaderboard-details p {
+    margin: 0;
+  }
+  
+  .points {
+    font-weight: bold;
+    font-size: 1.1em;
+  }
+  
+  .news-feed-section {
+    width: 70%;
+    flex-grow: 1;
+  }
+
+  .news-feed-section h2 {
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .news-feed-section h3 {
+    font-weight: bold;
+    font-size: 1.3em;
+    margin: 15px 0;
+  }
+  
+  .news-image {
+    width: 100%;
+    border-radius: 8px;
+    margin-top: 10px;
+  }
+
+.create-news-btn {
+    display: inline-block;
+    background-color: #28a745; 
+    color: #ffffff;
+    padding: 0.5rem 1.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none; 
+    margin-bottom: 1rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-left: 1rem;
 }
 
-.leaderboard-section {
-  background-color: #f5f0d7;
-  padding: 20px;
-  width: 30%;
-  border-radius: 8px;
+.create-news-btn:hover {
+    background-color: #218838; 
+    transform: scale(1.05); 
 }
-
-.leaderboard-section h2 {
-  font-size: 1.5em;
-  font-weight: bold;
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.leaderboard-item {
-  display: flex;
-  align-items: center;
-  margin-bottom: 15px;
-}
-
-.leaderboard-item img {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  margin-right: 10px;
-}
-
-.leaderboard-details {
-  flex: 1;
-}
-
-.leaderboard-details p {
-  margin: 0;
-}
-
-.points {
-  font-weight: bold;
-  font-size: 1.1em;
-}
-
-
-.news-feed-section h2 {
-  font-size: 1.5em;
-  font-weight: bold;
-  text-align: center;
-}
-
-.news-feed-section h3 {
-  font-weight: bold;
-  font-size: 1.3em;
-  margin: 15px 0;
-}
-
-.news-image {
-  width: 100%;
-  border-radius: 8px;
-  margin-top: 10px;
-}
-

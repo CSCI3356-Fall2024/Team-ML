@@ -2,6 +2,7 @@ body {
     font-family: 'Inter', sans-serif;
     margin: 0px;
     padding: 0px;
+    overflow-x: hidden;
 }
 nav {
     background-color: red;
@@ -83,6 +84,7 @@ img.avatar {
     gap: 50px;
     width: 100%;
     box-sizing: border-box;
+    max-width: 100%;
 }
 
 .form-container {
@@ -90,6 +92,7 @@ img.avatar {
     display: flex;
     justify-content: center;
     width: 100%;
+    max-width: 100%;
 }
 
 /* Left Column: Profile Information */
