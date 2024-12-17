@@ -28,10 +28,14 @@
 
             <div class="nav-links">
                 <ul>
+                    {% if request.user.is_authenticated %}
                     <em><li><a href="{% url 'actions' %}">Actions</a></li></em>
                     <em><li><a href="{% url 'rewards_list' %}">Rewards</a></li></em>
                     <em><li><a href="{% url 'profile' %}">Profile</a></li></em>
                     <em><li><a href="{% url 'campaign_list' %}">Campaign</a></li></em>
+                {% else %}
+                <em><li><a href="{% url 'social:begin' 'google-oauth2' %}">Sign In with Google</a></li></em>
+                {% endif %}
                 </ul>
             </div>
         </div>
