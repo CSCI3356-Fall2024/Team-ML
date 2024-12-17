@@ -169,7 +169,7 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.getenv('SOCIAL_AUTH_GOOGLE_OAUTH2_KEY')
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.getenv('SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET')
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_REDIRECT_URI = 'http://localhost:8000/oauth/redirect/google/'
+SOCIAL_AUTH_GOOGLE_OAUTH2_REDIRECT_URI = 'https://mysite-xrgz.onrender.com/oauth/redirect/google/'
 
 LOGIN_URL = "login"
 LOGOUT_URL = "logout"
