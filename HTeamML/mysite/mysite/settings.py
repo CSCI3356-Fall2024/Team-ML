@@ -169,7 +169,7 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = "798489912459-0hbhi90960o1i2la1bg3t94hde7lsrg1.a
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_REDIRECT_URI = 'https://mysite-xrgz.onrender.com/oauth/redirect/google/'
+SOCIAL_AUTH_GOOGLE_OAUTH2_REDIRECT_URI = 'https://mysite-xrgz.onrender.com/oauth/complete/google-oauth2/'
 
 LOGIN_URL = "login"
 LOGOUT_URL = "logout"
