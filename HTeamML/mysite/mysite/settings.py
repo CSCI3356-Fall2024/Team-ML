@@ -185,3 +185,7 @@ USE_TZ = True
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://mysite-xrgz.onrender.com/'
+]
