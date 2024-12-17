@@ -10,7 +10,7 @@ services:
     name: mysite
     runtime: python
     buildCommand: "./build.sh"
-    startCommand: "cd HTeamML && cd mysite && cd mysite && python3 -m gunicorn mysite.asgi -k uvicorn.workers.UvicornWorker"
+    startCommand: "python3 -m gunicorn mysite.asgi -k uvicorn.workers.UvicornWorker"
     envVars:
       - key: DATABASE_URL
         fromDatabase:
