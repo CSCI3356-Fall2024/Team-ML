@@ -237,11 +237,6 @@ def reward_create_view(request):
       'user': request.user
 })
     
-    
-    
-    
-    
-    
 @login_required
 def redeem_reward(request, reward_id):
     reward = get_object_or_404(Reward, id=reward_id)
@@ -281,6 +276,8 @@ def actions_view(request):
 
 @login_required
 def news_create(request):
+    user = get_user(request)
+
     if request.method == 'POST':
         form = NewsItemForm(request.POST, request.FILES)
         if form.is_valid():
@@ -288,4 +285,5 @@ def news_create(request):
             return redirect('landing')
     else:
         form = NewsItemForm()
-    return render(request, 'news_create.html', {'form': form})
+
+    return render(request, 'news_create.html', {'form': form, 'user': user})
