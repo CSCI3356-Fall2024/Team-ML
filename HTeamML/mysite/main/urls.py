@@ -1,9 +1,9 @@
-from django.urls import path
+from django.urls import path, include
 from django.contrib import admin
 from . import views
 
-
 urlpatterns = [
+  path('oauth/', include('social_django.urls')),
   path('admin/', admin.site.urls),
   path("", views.home_view, name="home"),
   path("logout/", views.logout_view, name="logout"),

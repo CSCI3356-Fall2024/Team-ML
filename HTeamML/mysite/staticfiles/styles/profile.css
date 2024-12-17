@@ -1,0 +1,252 @@
+/* Body Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #F3F5F9;
+    margin: 0;
+    padding: 0;
+}
+
+/* Container Styling */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+/* Profile Content with Two Columns */
+.profile-content {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    align-items: flex-start; /* Aligns items at the top */
+}
+
+/* Left and Right Column Styling */
+.left-column,
+.right-column {
+    flex: 1;
+}
+.right-column {
+    margin-top: 140px;
+}
+
+/* Align Current Points with Full Name */
+.right-column .profile-fields:first-of-type {
+    margin-top: 15px; /* Match the top margin of the Full Name field */
+}
+
+/* Profile Header Section */
+.profile-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+img.avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+}
+
+.user-details {
+    margin-left: 20px;
+}
+
+.user-details h2 {
+    font-size: 1.5rem;
+    margin: 0;
+    color: #212529;
+}
+
+.user-details p {
+    font-size: 14px;
+    color: #495057;
+    margin: 5px 0 0 0;
+}
+
+/* Profile Fields Styling */
+.profile-fields label {
+    font-size: 12px;
+    color: #6c757d;
+    margin-bottom: 4px;
+    display: block;
+}
+
+.profile-fields p {
+    font-size: 14px;
+    margin-bottom: 15px;
+    color: black;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 5px;
+}
+
+form {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+form label {
+    font-size: 14px;
+    color: #6c757d;
+}
+
+form input[type="file"] {
+    font-size: 14px;
+    padding: 5px;
+}
+
+form button.upload-button {
+    background-color: #007bff;  
+    color: white;           
+    padding: 10px 20px;
+    font-size: 14px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+/* Action Buttons Centered */
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    margin-top: 20px;
+    gap: 15px; /* Space between buttons */
+}
+
+/* Edit Button */
+.edit-button {
+    margin-top: 50px;
+    background-color: #28a745;  
+    color: white;           
+    padding: 12px 24px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+    text-decoration: none;
+    width: 150px; /* Ensures uniform button width */
+}
+
+.edit-button:hover {
+    background-color: #1b6b4b;
+}
+
+/* Logout Button */
+.logout-button {
+    margin-top: 30px;
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #FF4C4C; 
+    color: white; 
+    text-decoration: none; 
+    border: none; 
+    border-radius: 10px; 
+    font-size: 16px;
+    font-weight: bold;
+    width: 150px; /* Ensures uniform button width */
+}
+
+.logout-button:hover {
+    background-color: #FF1A1A;
+    border-color: #FF4C4C;
+    transform: scale(1.05);
+}
+
+
+/* Hidden by default */
+.hidden {
+    display: none;
+}
+
+/* Popup styling */
+.popup {
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 15px;
+    z-index: 1000;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Styling the form elements */
+.popup form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.popup input[type="file"] {
+    border: 1px solid #ccc;
+    padding: 5px;
+}
+
+.popup .upload-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.popup .upload-button:hover {
+    background-color: #45a049;
+}
+
+.avatar {
+    transition: transform 0.3s ease; 
+    cursor: pointer; 
+}
+
+.avatar:hover {
+    transform: scale(1.05); 
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); 
+}
+
+/* Responsive Design for Small Screens */
+@media screen and (max-width: 768px) {
+    .profile-content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .left-column,
+    .right-column {
+        width: 100%;
+    }
+    .right-column {
+        margin-top: 0;
+    }
+
+    .profile-fields p,
+    .profile-fields label {
+        text-align: center;
+    }
+
+    .action-buttons {
+        text-align: center;
+    }
+
+    img.avatar {
+        margin-bottom: 20px;
+    }
+}
+

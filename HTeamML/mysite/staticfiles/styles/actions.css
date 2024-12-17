@@ -1,0 +1,88 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+    color: #333;
+    overflow-x: hidden;
+}
+
+.title {
+    margin-left: 1rem;
+    text-align: center;
+    font-size: 2rem;
+    color: #343a40;
+    margin-top: 20px;
+}
+
+.table-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px auto;
+    width: 90%;
+    max-width: 1000px;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.activity-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 1rem;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.activity-table th {
+    background-color: #343a40;
+    color: white;
+    padding: 10px;
+    text-transform: uppercase;
+    text-align: left;
+}
+
+.activity-table td {
+    padding: 10px;
+    border-top: 1px solid #ddd;
+}
+
+.activity-table tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+.activity-table tr:hover {
+    background-color: #e9ecef;
+    transform: scale(1.01);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.activity-table .reward-name {
+    color: #007bff; 
+    font-weight: bold;
+}
+
+.activity-table .campaign-name {
+    color: #6f42c1; 
+    font-weight: bold;
+}
+
+.activity-table .points-added {
+    color: #28a745; 
+    font-weight: bold;
+}
+
+.activity-table .points-deducted {
+    color: #dc3545; 
+    font-weight: bold;
+}
+
+.no-activities {
+    text-align: center;
+    font-size: 1.25rem;
+    color: #6c757d;
+    margin-top: 2rem;
+    font-style: italic;
+}

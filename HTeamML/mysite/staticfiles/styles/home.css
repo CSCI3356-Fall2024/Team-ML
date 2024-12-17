@@ -1,0 +1,80 @@
+.container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #f4f7fc;
+    font-family: Arial, sans-serif;
+    padding: 30px;
+}
+
+/* Authenticated User Section */
+.user-auth {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 300px;
+}
+
+.user-auth h2 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.user-auth p {
+    font-size: 1rem;
+    color: #555;
+    margin: 5px 0;
+}
+
+.user-auth .btn-logout {
+    background-color: #FF4C4C;
+    color: white;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1rem;
+    display: inline-block;
+    margin-top: 15px;
+}
+
+.user-auth .btn-logout:hover {
+    background-color: #e03c3c;
+}
+
+/* Unauthenticated User Section */
+.user-not-auth {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 300px;
+}
+
+.user-not-auth h2 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.user-not-auth .btn-login {
+    background-color: #28a745;
+    color: white;
+    font-weight:bold;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1rem;
+    display: inline-block;
+    margin-top: 15px;
+}
+
+.user-not-auth .btn-login:hover {
+    background-color: #00CC3F;
+}
+
