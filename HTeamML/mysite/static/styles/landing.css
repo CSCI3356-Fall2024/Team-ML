@@ -64,29 +64,6 @@
   }
   
   .news-image {
-    width: 100%;
-    border-radius: 8px;
-    margin-top: 10px;
+    width: 90%; /* Makes the image take up the full width of the container */
+    height: auto;
   }
-
-.create-news-btn {
-    display: inline-block;
-    background-color: #28a745; 
-    color: #ffffff;
-    padding: 0.5rem 1.5rem;
-    font-size: 1rem;
-    font-weight: bold;
-    border: none;
-    border-radius: 8px;
-    text-align: center;
-    cursor: pointer;
-    text-decoration: none; 
-    margin-bottom: 1rem;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    margin-left: 1rem;
-}
-
-.create-news-btn:hover {
-    background-color: #218838; 
-    transform: scale(1.05); 
-}
