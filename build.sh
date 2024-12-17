@@ -2,7 +2,7 @@
 # Exit on error
 set -o errexit
 
-cd $(dirname "$0")
+cd /opt/render/project/src/HTeamML/mysite
 
 # Modify this line as needed for your package manager (pip, poetry, etc.)
 pip3 install -r requirements.txt
