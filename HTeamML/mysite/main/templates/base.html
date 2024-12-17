@@ -33,6 +33,9 @@
                     <em><li><a href="{% url 'rewards_list' %}">Rewards</a></li></em>
                     <em><li><a href="{% url 'profile' %}">Profile</a></li></em>
                     <em><li><a href="{% url 'campaign_list' %}">Campaign</a></li></em>
+                        {% if user.supervisor %}
+                        <em><li><a href="{% url 'news_create' %}">Create News</a></li></em>
+                        {% endif %}
                 {% else %}
                 <em><li><a href="{% url 'social:begin' 'google-oauth2' %}">Sign In with Google</a></li></em>
                 {% endif %}

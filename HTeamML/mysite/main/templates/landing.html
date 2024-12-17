@@ -5,17 +5,10 @@
 
 {% block content %}
 <link rel="stylesheet" type="text/css" href="{% static 'styles/landing.css' %}">
-<style>
-.news-feed-section {
-  width: 70%;
-  flex-grow: 1;
-}
-</style>
 
 <div class="landing-container">
     <div class="leaderboard-section">
         <h2>LEADERBOARD</h2>
-        
         {% for user in top_users %}
         <div class="leaderboard-item">
             <img id="avatar" class="avatar" src="{{ user.profile_picture.url }}">
@@ -32,13 +25,16 @@
 
 
     <div class="news-feed-section">
-        {% if user.supervisor %}
-            <a href ="{% url 'news_create' %}" class="create-news-btn">Add News</a>
-        {% endif %}
         <h2>NEWS FEED</h2>
-        <h3>{{latest_news.headline}}</h3>
-        <img id="photo" class="news-image" src="{{ latest_news.photo.url }}">
-        <p>{{latest_news.body}}</p>
+        {% if latest_news %}
+        <h3>{{ latest_news.headline }}</h3>
+            {% if latest_news.photo %}
+                <img id="photo" class="news-image" src="{{ latest_news.photo.url }}" alt="News Image">
+            {% endif %}
+         <p>{{ latest_news.body }}</p>
+        {% else %}
+        <p>No news available at the moment. Add the first news item!</p>
+    {% endif %}
     </div>
 
 </div>

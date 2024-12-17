@@ -174,7 +174,10 @@ def campaign_detail(request, campaign_id):
 
 def landing_view(request):
     top_users = User.objects.order_by('-total_points')[:5]
-    latest_news = NewsItem.objects.latest('created_at')
+    try:
+        latest_news = NewsItem.objects.latest('created_at')
+    except NewsItem.DoesNotExist:
+        latest_news = None
     return render(request, 'landing.html', {'top_users': top_users, 'latest_news': latest_news})
 
 @login_required
