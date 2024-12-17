@@ -2,11 +2,13 @@
 # Exit on error
 set -o errexit
 
+cd $(dirname "$0")
+
 # Modify this line as needed for your package manager (pip, poetry, etc.)
 pip3 install -r requirements.txt
 
 # Convert static asset files
-python3 cd .. manage.py collectstatic --no-input
+python3 manage.py collectstatic --no-input
 
 # Apply any outstanding database migrations
-python3 cd .. manage.py migrate
+python3 manage.py migrate
